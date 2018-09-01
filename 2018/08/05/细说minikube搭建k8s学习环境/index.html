@@ -108,20 +108,27 @@
 
 
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="花满楼">
-<meta property="og:url" content="http://yongqiang.ren/index.html">
+  <meta name="description" content="0.准备工作 minikube依赖墙外资源，所以需要准备好shadowsocks, shadowsocks默认监听localhost, 将其改成监听所有网卡(0.0.0.0) 安装virtualbox 安装kubectl  1.minikube尝鲜启动kubernetesminikube start \--vm-driver=virtualbox \--docker-env http_proxy=">
+<meta name="keywords" content="minikube,kubernetes">
+<meta property="og:type" content="article">
+<meta property="og:title" content="细说minikube搭建k8s学习环境">
+<meta property="og:url" content="http://yongqiang.ren/2018/08/05/细说minikube搭建k8s学习环境/index.html">
 <meta property="og:site_name" content="花满楼">
+<meta property="og:description" content="0.准备工作 minikube依赖墙外资源，所以需要准备好shadowsocks, shadowsocks默认监听localhost, 将其改成监听所有网卡(0.0.0.0) 安装virtualbox 安装kubectl  1.minikube尝鲜启动kubernetesminikube start \--vm-driver=virtualbox \--docker-env http_proxy=">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://oszi662e4.bkt.clouddn.com/2018-08-05-15288173674439.jpg">
+<meta property="og:updated_time" content="2018-08-05T15:27:23.034Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="花满楼">
+<meta name="twitter:title" content="细说minikube搭建k8s学习环境">
+<meta name="twitter:description" content="0.准备工作 minikube依赖墙外资源，所以需要准备好shadowsocks, shadowsocks默认监听localhost, 将其改成监听所有网卡(0.0.0.0) 安装virtualbox 安装kubectl  1.minikube尝鲜启动kubernetesminikube start \--vm-driver=virtualbox \--docker-env http_proxy=">
+<meta name="twitter:image" content="http://oszi662e4.bkt.clouddn.com/2018-08-05-15288173674439.jpg">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yongqiang.ren/"/>
+  <link rel="canonical" href="http://yongqiang.ren/2018/08/05/细说minikube搭建k8s学习环境/"/>
 
 
 
@@ -131,7 +138,7 @@
   };
 </script>
 
-  <title>花满楼</title>
+  <title>细说minikube搭建k8s学习环境 | 花满楼</title>
   
 
 
@@ -178,8 +185,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -216,7 +222,7 @@
         
         
           
-          <li class="menu-item menu-item-home menu-item-active">
+          <li class="menu-item menu-item-home">
     <a href="/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
   </li>
@@ -284,295 +290,9 @@
           
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yongqiang.ren/2018/08/05/gitbook折腾小记/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yongqiang.ren">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="花满楼">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/05/gitbook折腾小记/" itemprop="url">
-                  gitbook折腾小记
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-08-05 23:01:24" itemprop="dateCreated datePublished" datetime="2018-08-05T23:01:24+08:00">2018-08-05</time>
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yongqiang.ren/2018/08/05/hexo折腾小记/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yongqiang.ren">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="花满楼">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/05/hexo折腾小记/" itemprop="url">
-                  hexo折腾小记
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-08-05 23:01:08" itemprop="dateCreated datePublished" datetime="2018-08-05T23:01:08+08:00">2018-08-05</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-09-01 14:21:03" itemprop="dateModified" datetime="2018-09-01T14:21:03+08:00">2018-09-01</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
 
   
 
@@ -604,11 +324,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/05/细说minikube搭建k8s学习环境/" itemprop="url">
-                  细说minikube搭建k8s学习环境
-                </a>
+          <h1 class="post-title" itemprop="name headline">细说minikube搭建k8s学习环境
               
             
           </h1>
@@ -647,6 +363,16 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/05/细说minikube搭建k8s学习环境/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count gitment-comments-count" data-xid="/2018/08/05/细说minikube搭建k8s学习环境/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -671,9 +397,7 @@
       
 
       
-        
-          
-            <h3 id="0-准备工作"><a href="#0-准备工作" class="headerlink" title="0.准备工作"></a>0.准备工作</h3><ul>
+        <h3 id="0-准备工作"><a href="#0-准备工作" class="headerlink" title="0.准备工作"></a>0.准备工作</h3><ul>
 <li>minikube依赖墙外资源，所以需要准备好<a href="https://github.com/shadowsocks/ShadowsocksX-NG" target="_blank" rel="noopener">shadowsocks</a>, shadowsocks默认监听localhost, 将其改成监听所有网卡(0.0.0.0)</li>
 <li>安装<a href="https://www.virtualbox.org/" target="_blank" rel="noopener">virtualbox</a></li>
 <li>安装kubectl</li>
@@ -693,8 +417,6 @@
 <h3 id="7-内部原理"><a href="#7-内部原理" class="headerlink" title="7.内部原理"></a>7.内部原理</h3><p>我们知道k8s集群至少有<code>api-server</code>,<code>kube-scheduler</code>,<code>kube-controller-manager</code>,<code>kubelet</code>,<code>kube-proxy</code>五个组件和一套<code>etcd</code>组成。<br>那我<code>minikube ssh</code>进入到虚拟机里看看, </p>
 <p><a href="https://github.com/Unknwon/wuwen.org/issues/20" target="_blank" rel="noopener">https://github.com/Unknwon/wuwen.org/issues/20</a><br><a href="https://blog.samemoment.com/articles/kubernetes" target="_blank" rel="noopener">https://blog.samemoment.com/articles/kubernetes</a><br><a href="https://github.com/docker/machine/blob/ab3b7acb9792271dcd349da731150757a9346183/drivers/virtualbox/virtualbox.go#L28" target="_blank" rel="noopener">https://github.com/docker/machine/blob/ab3b7acb9792271dcd349da731150757a9346183/drivers/virtualbox/virtualbox.go#L28</a></p>
 
-          
-        
       
     </div>
 
@@ -712,14 +434,38 @@
 
     <footer class="post-footer">
       
-
+        <div class="post-tags">
+          
+            <a href="/tags/minikube/" rel="tag"># minikube</a>
+          
+            <a href="/tags/kubernetes/" rel="tag"># kubernetes</a>
+          
+        </div>
       
 
       
+      
+      
 
       
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/05/hexo折腾小记/" rel="prev" title="hexo折腾小记">
+                hexo折腾小记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
       
-        <div class="post-eof"></div>
+
+      
       
     </footer>
   </div>
@@ -729,14 +475,22 @@
   </article>
 
 
-    
-  </section>
-
-  
+  </div>
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
 
         </div>
         
@@ -757,8 +511,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -824,6 +587,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#0-准备工作"><span class="nav-number">1.</span> <span class="nav-text">0.准备工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-minikube尝鲜"><span class="nav-number">2.</span> <span class="nav-text">1.minikube尝鲜</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#启动kubernetes"><span class="nav-number">2.1.</span> <span class="nav-text">启动kubernetes</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#访问dashboard"><span class="nav-number">2.2.</span> <span class="nav-text">访问dashboard</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-minikube是什么"><span class="nav-number">3.</span> <span class="nav-text">2.minikube是什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-安装"><span class="nav-number">4.</span> <span class="nav-text">3.安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-常用命令"><span class="nav-number">5.</span> <span class="nav-text">4.常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#start-启动一个k8s集群"><span class="nav-number">5.1.</span> <span class="nav-text">start 启动一个k8s集群</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#get-k8s-versions-获取可以使用的k8s版本"><span class="nav-number">5.2.</span> <span class="nav-text">get-k8s-versions 获取可以使用的k8s版本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#addons-插件管理下面会细说"><span class="nav-number">5.3.</span> <span class="nav-text">addons 插件管理下面会细说</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-插件管理"><span class="nav-number">6.</span> <span class="nav-text">5.插件管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-配置网络代理"><span class="nav-number">7.</span> <span class="nav-text">6.配置网络代理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-内部原理"><span class="nav-number">8.</span> <span class="nav-text">7.内部原理</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -954,6 +733,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
 
   
 
@@ -983,6 +766,30 @@
 
     
 
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname,
+            owner: 'yongqiangren',
+            repo: 'yongqaingren.github.io',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: '65c40e2d0afff760c0528f4d169e2e919f1a7123',
+            
+                client_id: '04b0e93a41c5229f8661'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
     
 
 

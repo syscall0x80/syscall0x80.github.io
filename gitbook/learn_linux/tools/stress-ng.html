@@ -1,0 +1,2607 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>stress-ng · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../case/" />
+    
+    
+    <link rel="prev" href="sar.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    linux学习笔记
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../theory/">
+            
+                <a href="../theory/">
+            
+                    
+                    理论
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    工具
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="free.html">
+            
+                <a href="free.html">
+            
+                    
+                    free
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="ps.html">
+            
+                <a href="ps.html">
+            
+                    
+                    ps
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="top.html">
+            
+                <a href="top.html">
+            
+                    
+                    top
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="sar.html">
+            
+                <a href="sar.html">
+            
+                    
+                    sar
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.3.5" data-path="stress-ng.html">
+            
+                <a href="stress-ng.html">
+            
+                    
+                    stress-ng
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../case/">
+            
+                <a href="../case/">
+            
+                    
+                    案例
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >stress-ng</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <pre><code class="lang-bash">
+STRESS-NG(1)                                              General Commands Manual                                              STRESS-NG(1)
+
+
+
+NAME
+       stress-ng - a tool to load and stress a computer system
+
+
+SYNOPSIS
+       stress-ng [OPTION [ARG]] ...
+
+
+DESCRIPTION
+       stress-ng  will stress <span class="hljs-built_in">test</span> a computer system <span class="hljs-keyword">in</span> various selectable ways. It was designed to exercise various physical subsystems of
+       a computer as well as the various operating system kernel interfaces.  stress-ng also has a wide range of CPU specific stress  tests
+       that exercise floating point, <span class="hljs-built_in">integer</span>, bit manipulation and control flow.
+
+       stress-ng was originally intended to make a machine work hard and trip hardware issues such as thermal overruns as well as operating
+       system bugs that only occur when a system is being thrashed hard. Use stress-ng with caution as some of the tests can make a  system
+       run hot on poorly designed hardware and also can cause excessive system thrashing <span class="hljs-built_in">which</span> may be difficult to stop.
+
+       stress-ng  can also measure <span class="hljs-built_in">test</span> throughput rates; this can be useful to observe performance changes across different operating sys&#x2010;
+       tem releases or types of hardware. However, it has never been intended to be used as a precise benchmark <span class="hljs-built_in">test</span> suite, so <span class="hljs-keyword">do</span>  NOT  use
+       it <span class="hljs-keyword">in</span> this manner.
+
+       Running  stress-ng  with root privileges will adjust out of memory settings on Linux systems to make the stressors unkillable <span class="hljs-keyword">in</span> low
+       memory situations, so use this judiciously.  With the appropriate privilege, stress-ng can allow the ionice class and ionice  levels
+       to be adjusted, again, this should be used with care.
+
+       One  can specify the number of processes to invoke per <span class="hljs-built_in">type</span> of stress <span class="hljs-built_in">test</span>; specifying a negative or zero value will select the num&#x2010;
+       ber of processors available as defined by sysconf(_SC_NPROCESSORS_CONF).
+
+OPTIONS
+       General stress-ng control options:
+
+       --aggressive
+              enables more file, cache and memory aggressive options. This may slow tests down, increase latencies and reduce the number of
+              bogo ops as well as changing the balance of user time vs system time used depending on the <span class="hljs-built_in">type</span> of stressor being used.
+
+       <span class="hljs-_">-a</span> N, --all N
+              start  N  instances  of  each  stressor.  If  N  is  less than zero, <span class="hljs-keyword">then</span> the number of CPUs online is used <span class="hljs-keyword">for</span> the number of
+              instances.  If N is zero, <span class="hljs-keyword">then</span> the number of CPUs <span class="hljs-keyword">in</span> the system is used.
+
+       -b N, --backoff N
+              <span class="hljs-built_in">wait</span> N microseconds between the start of each stress worker process. This allows one to ramp up the stress tests over time.
+
+       --class name
+              specify the class of stressors to run. Stressors are classified into one or more of the following  classes:  cpu,  cpu-cache,
+              device, io, interrupt, filesystem, memory, network, os, pipe, scheduler and vm.  Some stressors fall into just one class. For
+              example the <span class="hljs-string">&apos;get&apos;</span> stressor is just <span class="hljs-keyword">in</span> the <span class="hljs-string">&apos;os&apos;</span> class. Other stressors fall  into  more  than  one  class,  <span class="hljs-keyword">for</span>  example,  the
+              <span class="hljs-string">&apos;lsearch&apos;</span>  stressor falls into the <span class="hljs-string">&apos;cpu&apos;</span>, <span class="hljs-string">&apos;cpu-cache&apos;</span> and <span class="hljs-string">&apos;memory&apos;</span> classes as it exercises all these three.  Selecting a spe&#x2010;
+              cific class will run all the stressors that fall into that class only when run with the --sequential option.
+
+              Specifying a name followed by a question mark (<span class="hljs-keyword">for</span> example --class vm?) will <span class="hljs-built_in">print</span> out all the  stressors  <span class="hljs-keyword">in</span>  that  specific
+              class.
+
+       -n, --dry-run
+              parse options, but <span class="hljs-keyword">do</span> not run stress tests. A no-op.
+
+       -h, --help
+              show help.
+
+       --ignite-cpu
+              alter  kernel  controls  to  try and maximize the CPU. This requires root privilege to alter various /sys interface controls.
+              Currently this only works <span class="hljs-keyword">for</span> Intel P-State enabled x86 systems on Linux.
+
+       --ionice-class class
+              specify ionice class (only on Linux). Can be idle (default), besteffort, be, realtime, rt.
+
+       --ionice-level level
+              specify ionice level (only on Linux). For idle, 0 is the only possible option. For besteffort or realtime values  0  (highest
+              priority) to 7 (lowest priority). See ionice(1) <span class="hljs-keyword">for</span> more details.
+
+       -k, --keep-name
+              by  default,  stress-ng will attempt to change the name of the stress processes according to their functionality; this option
+              disables this and keeps the process names to be the name of the parent process, that is, stress-ng.
+
+       --log-brief
+              by default stress-ng will report the name of the program, the message <span class="hljs-built_in">type</span> and the process id as a prefix to all output.  The
+              --log-brief option will output messages without these fields to produce a less verbose output.
+
+       --log-file filename
+              write messages to the specified <span class="hljs-built_in">log</span> file.
+
+       --maximize
+              overrides the default stressor settings and instead sets these to the maximum settings allowed.  These defaults can always be
+              overridden by the per stressor settings options <span class="hljs-keyword">if</span> required.
+
+       --metrics
+              output number of bogo operations <span class="hljs-keyword">in</span> total performed by the stress processes.  Note that these are not a  reliable  metric  of
+              performance  or  throughput  and have not been designed to be used <span class="hljs-keyword">for</span> benchmarking whatsoever. The metrics are just a useful
+              way to observe how a system behaves when under various kinds of load.
+
+              The following columns of information are output:
+
+              Column Heading             Explanation
+              bogo ops                   number of iterations of the stressor during the run. This is metric of how much overall <span class="hljs-string">&quot;work&quot;</span> has
+                                         been achieved <span class="hljs-keyword">in</span> bogo operations.
+              real time (secs)           average wall clock duration (<span class="hljs-keyword">in</span> seconds) of the stressor. This is the total wall clock time of all
+                                         the instances of that particular stressor divided by the number of these stressors being run.
+              usr time (secs)            total user time (<span class="hljs-keyword">in</span> seconds) consumed running all the instances of the stressor.
+              sys time (secs)            total system time (<span class="hljs-keyword">in</span> seconds) consumed running all the instances of the stressor.
+              bogo ops/s (real time)     total bogo operations per second based on wall clock run time. The wall clock  time  reflects  the
+                                         apparent  run time. The more processors one has on a system the more the work load can be distrib&#x2010;
+                                         uted onto these and hence the wall clock time will reduce and the bogo  ops  rate  will  increase.
+                                         This is essentially the <span class="hljs-string">&quot;apparent&quot;</span> bogo ops rate of the system.
+              bogo ops/s (usr+sys time)  total  bogo operations per second based on cumulative user and system time.  This is the real bogo
+                                         ops rate of the system taking into consideration the actual time execution time  of  the  stressor
+                                         across all the processors.  Generally this will decrease as one adds more concurrent stressors due
+                                         to contention on cache, memory, execution units, buses and I/O devices.
+
+       --metrics-brief
+              <span class="hljs-built_in">enable</span> metrics and only output metrics that are non-zero.
+
+       --minimize
+              overrides the default stressor settings and instead sets these to the minimum settings allowed.  These defaults can always be
+              overridden by the per stressor settings options <span class="hljs-keyword">if</span> required.
+
+       --no-advise
+              from  version  0.02.26  stress-ng  automatically  calls  madvise(2) with random advise options before each mmap and munmap to
+              stress the the vm subsystem a little harder. The --no-advise option turns this default off.
+
+       --no-rand-seed
+              Do not seed the stress-ng psuedo-random number generator with a quasi random start seed, but instead seed  it  with  constant
+              values.  This  forces tests to run each time using the same start conditions <span class="hljs-built_in">which</span> can be useful when one requires reproduce&#x2010;
+              able stress tests.
+
+       --oomable
+              Do not respawn a stressor <span class="hljs-keyword">if</span> it gets killed by the Out-of-Memory (OOM) killer.  The default behaviour is  to  restart  a  new
+              instance of a stressor <span class="hljs-keyword">if</span> the kernel OOM killer terminates the process. This option disables this default behaviour.
+
+       --page-in
+              touch allocated pages that are not <span class="hljs-keyword">in</span> core, forcing them to be paged back in.  This is a useful option to force all the allo&#x2010;
+              cated pages to be paged <span class="hljs-keyword">in</span> when using the bigheap, mmap and vm stressors.  It will severely degrade performance when the mem&#x2010;
+              ory  <span class="hljs-keyword">in</span> the system is less than the allocated buffer sizes.  This uses mincore(2) to determine the pages that are not <span class="hljs-keyword">in</span> core
+              and hence need touching to page them back in.
+
+       --pathological
+              <span class="hljs-built_in">enable</span> stressors that are known to hang systems.  Some stressors can quickly consume resources <span class="hljs-keyword">in</span> such a way  that  they  can
+              rapidly  hang  a  system before the kernel can OOM <span class="hljs-built_in">kill</span> them. These stressors are not enabled by default, this option enables
+              them, but you probably don<span class="hljs-string">&apos;t want to do this. You have been warned.
+
+       --perf measure processor and system activity using perf events. Linux only  and  caveat  emptor,  according  to  perf_event_open(2):
+              &quot;Always double-check your results! Various generalized events have had wrong values.&quot;.  Note that with Linux 4.7 one needs to
+              have CAP_SYS_ADMIN capabilities for this option to work, or adjust  /proc/sys/kernel/perf_event_paranoid to below  2  to  use
+              this without CAP_SYS_ADMIN.
+
+       -q, --quiet
+              do not show any output.
+
+       -r N, --random N
+              start N random stress workers. If N is 0, then the number of configured processors is used for N.
+
+       --sched scheduler
+              select the named scheduler (only on Linux). To see the list of available schedulers use: stress-ng --sched which
+
+       --sched-prio prio
+              select  the  scheduler priority level (only on Linux). If the scheduler does not support this then the default priority level
+              of 0 is chosen.
+
+       --sequential N
+              sequentially run all the stressors one by one for a default of 60 seconds. The number of instances of each of the  individual
+              stressors  to  be  started is N.  If N is less than zero, then the number of CPUs online is used for the number of instances.
+              If N is zero, then the number of CPUs in the system is used.  Use the --timeout option to specify the duration  to  run  each
+              stressor.
+
+       --stressors
+              output the names of the available stressors.
+
+       --syslog
+              log output (except for verbose -v messages) to the syslog.
+
+       --taskset list
+              set  CPU  affinity based on the list of CPUs provided; stress-ng is bound to just use these CPUs (Linux only). The CPUs to be
+              used are specified by a comma separated list of CPU (0 to N-1). One can specify a range  of  CPUs  using  &apos;</span>-<span class="hljs-string">&apos;,  for  example:
+              --taskset 0,2-3,6,7-11
+
+       --temp-path path
+              specify  a  path  for stress-ng temporary directories and temporary files; the default path is the current working directory.
+              This path must have read and write access for the stress-ng stress processes.
+
+       --thrash
+              This can only be used when running on Linux and with root privilege. This option starts a background  thrasher  process  that
+              works  through  all  the processes on a system and tries to page as many pages in the processes as possible.  This will cause
+              considerable amount of thrashing of swap on an over-committed system.
+
+       -t N, --timeout N
+              stop stress test after N seconds. One can also specify the units of time in seconds, minutes, hours, days or years  with  the
+              suffix s, m, h, d or y.
+
+       --timer-slack N
+              adjust  the  per  process timer slack to N nanoseconds (Linux only). Increasing the timer slack allows the kernel to coalesce
+              timer events by adding some fuzzinesss to timer expiration times and hence reduce wakeups.  Conversely, decreasing the  timer
+              slack will increase wakeups.  A value of 0 for the timer-slack will set the system default of 50,000 nanoseconds.
+
+       --times
+              show  the cumulative user and system times of all the child processes at the end of the stress run.  The percentage of utili&#x2010;
+              sation of available CPU time is also calculated from the number of on-line CPUs in the system.
+
+       --tz   collect temperatures from the available thermal zones on the machine (Linux only).  Some devices may have one or more thermal
+              zones, where as others may have none.
+
+       -v, --verbose
+              show all debug, warnings and normal information output.
+
+       --verify
+              verify results when a test is run. This is not available on all tests. This will sanity check the computations or memory con&#x2010;
+              tents from a test run and report to stderr any unexpected failures.
+
+       -V, --version
+              show version.
+
+       -x, --exclude list
+              specify a list of one or more stressors to exclude (that is, do not run them).  This is useful to exclude specific  stressors
+              when  one  selects many stressors to run using the --class option, --sequential, --all and --random options. Example, run the
+              cpu class stressors concurrently and exclude the numa and search stressors:
+
+              stress-ng --class cpu --all 1 -x numa,bsearch,hsearch,lsearch
+
+       -Y, --yaml filename
+              output gathered statistics to a YAML formatted file named &apos;</span>filename<span class="hljs-string">&apos;.
+
+
+
+       Stressor specific options:
+
+       --affinity N
+              start N workers that rapidly change CPU affinity (only on Linux). Rapidly switching CPU affinity can contribute to poor cache
+              behaviour.
+
+       --affinity-ops N
+              stop affinity workers after N bogo affinity operations (only on Linux).
+
+       --affinity-rand
+              switch CPU affinity randomly rather than the default of sequentially.
+
+       --af-alg N
+              start  N  workers  that exercise the AF_ALG socket domain by hashing and encrypting various sized random messages. This exer&#x2010;
+              cises the SHA1, SHA224, SHA256, SHA384, SHA512, MD4, MD5, RMD128,  RMD160,  RMD256,  RMD320,  WP256,  WP384,  WP512,  TGR128,
+              TGR160,  TGR192  hashes  and  the  cbc(aes),  lrw(aes),  ofb(aes),  xts(twofish),  xts(serpent),  xts(cast6),  xts(camellia),
+              lrw(twofish), lrw(cast6), lrw(camellia), salsa20 skcipers.
+
+       --af-alg-ops N
+              stop af-alg workers after N AF_ALG messages are hashed.
+
+       --aio N
+              start N workers that issue multiple small asynchronous I/O writes and reads on a relatively small temporary  file  using  the
+              POSIX  aio interface.  This will just hit the file system cache and soak up a lot of user and kernel time in issuing and han&#x2010;
+              dling I/O requests.  By default, each worker process will handle 16 concurrent I/O requests.
+
+       --aio-ops N
+              stop POSIX asynchronous I/O workers after N bogo asynchronous I/O requests.
+
+       --aio-requests N
+              specify the number of POSIX asynchronous I/O requests each worker should issue, the default is 16; 1 to 4096 are allowed.
+
+       --aiol N
+              start N workers that issue multiple 4K random asynchronous I/O writes using the Linux aio system calls  io_setup(2),  io_sub&#x2010;
+              mit(2), io_getevents(2) and io_destroy(2).  By default, each worker process will handle 16 concurrent I/O requests.
+
+       --aiol-ops N
+              stop Linux asynchronous I/O workers after N bogo asynchronous I/O requests.
+
+       --aiol-requests N
+              specify the number of Linux asynchronous I/O requests each worker should issue, the default is 16; 1 to 4096 are allowed.
+
+       --apparmor N
+              start  N  workers that exercise various parts of the AppArmor interface. Currently one needs root permission to run this par&#x2010;
+              ticular test. This test is only available on Linux systems with AppArmor support.
+
+       --apparmor-ops
+              stop the AppArmor workers after N bogo operations.
+
+       --atomic N
+              start N workers that exercise various GCC __atomic_*() built in operations on 8, 16, 32 and 64 bit intergers that are  shared
+              among the N workers. This stressor is only available for builds using GCC 4.7.4 or higher. The stressor forces many front end
+              cache stalls and cache references.
+
+       --atomic-ops N
+              stop the atomic workers after N bogo atomic operations.
+
+       -B N, --bigheap N
+              start N workers that grow their heaps by reallocating memory. If the out of memory killer (OOM) on Linux kills the worker  or
+              the  allocation  fails then the allocating process starts all over again.  Note that the OOM adjustment for the worker is set
+              so that the OOM killer will treat these workers as the first candidate processes to kill.
+
+       --bigheap-ops N
+              stop the big heap workers after N bogo allocation operations are completed.
+
+       --bigheap-growth N
+              specify amount of memory to grow heap by per iteration. Size can be from 4K to 64MB. Default is 64K.
+
+       --bind-mount N
+              start N workers that repeatedly bind mount / to / inside a user namespace. This can consume resources rapidly, forcing out of
+              memory situations. Do not use this stressor unless you want to risk hanging your machine.
+
+       --bind-mount-ops N
+              stop after N bind mount bogo operations.
+
+       --brk N
+              start N workers that grow the data segment by one page at a time using multiple brk(2) calls. Each successfully allocated new
+              page is touched to ensure it is resident in memory.  If an out of memory condition occurs then the test will reset  the  data
+              segment  to the point before it started and repeat the data segment resizing over again.  The process adjusts the out of mem&#x2010;
+              ory setting so that it may be killed by the out of memory (OOM) killer before other processes.  If it is killed  by  the  OOM
+              killer then it will be automatically re-started by a monitoring parent process.
+
+       --brk-ops N
+              stop the brk workers after N bogo brk operations.
+
+       --brk-notouch
+              do  not  touch  each  newly  allocated data segment page. This disables the default of touching each newly allocated page and
+              hence avoids the kernel from necessarily backing the page with real physical memory.
+
+       --bsearch N
+              start N workers that binary search a sorted array of 32 bit integers using bsearch(3). By default, there are  65536  elements
+              in the array.  This is a useful method to exercise random access of memory and processor cache.
+
+       --bsearch-ops N
+              stop the bsearch worker after N bogo bsearch operations are completed.
+
+       --bsearch-size N
+              specify the size (number of 32 bit integers) in the array to bsearch. Size can be from 1K to 4M.
+
+       -C N, --cache N
+              start  N  workers that perform random wide spread memory read and writes to thrash the CPU cache.  The code does not intelli&#x2010;
+              gently determine the CPU cache configuration and so it may be sub-optimal in producing hit-miss read/write activity for  some
+              processors.
+
+       --cache-fence
+              force write serialization on each store operation (x86 only). This is a no-op for non-x86 architectures.
+
+       --cache-flush
+              force flush cache on each store operation (x86 only). This is a no-op for non-x86 architectures.
+
+       --cache-level N
+              specify  level of cache to exercise (1=L1 cache, 2=L2 cache, 3=L3/LLC cache (the default)).  If the cache hierarchy cannot be
+              determined, built-in defaults will apply.
+
+       --cache-no-affinity
+              do not change processor affinity when --cache is in effect.
+
+       --cache-ops N
+              stop cache thrash workers after N bogo cache thrash operations.
+
+       --cache-prefetch
+              force read prefetch on next read address on architectures that support prefetching.
+
+       --cache-ways N
+              specify the number of cache ways to exercise. This allows a subset of the overall cache size to be exercised.
+
+       --cap N
+              start N workers that read per process capabililties via calls to capget(2) (Linux only).
+
+       --cap-ops N
+              stop after N cap bogo operations.
+
+       --chdir N
+              start N workers that change directory between directories using chdir(2).
+
+       --chdir-ops N
+              stop after N chdir bogo operations.
+
+       --chdir-dirs N
+              exercise chdir on N directories. The default is 8192 directories, this allows 64 to 65536 directories to be used instead.
+
+       --chmod N
+              start N workers that change the file mode bits via chmod(2) and fchmod(2) on the same file. The greater the value for N  then
+              the more contention on the single file.  The stressor will work through all the combination of mode bits.
+
+       --chmod-ops N
+              stop after N chmod bogo operations.
+
+       --chown N
+              start  N  workers that exercise chown(2) on the same file. The greater the value for N then the more contention on the single
+              file.
+
+       --chown-ops N
+              stop the chown workers after N bogo chown(2) operations.
+
+       --chroot N
+              start N workers that exercise chroot(2) on various valid and invalid chroot paths. (Linux only).
+
+       --chroot-ops N
+              stop the chroot workers after N bogo chroot(2) operations.
+
+       --clock N
+              start N workers exercising clocks and POSIX timers. For all known clock types this will exercise clock_getres(2),  clock_get&#x2010;
+              time(2)  and  clock_nanosleep(2).   For  all known timers it will create a 50000ns timer and busy poll this until it expires.
+              This stressor will cause frequent context switching.
+
+       --clock-ops N
+              stop clock stress workers after N bogo operations.
+
+       --clone N
+              start N workers that create clones (via the clone(2) system call). This will rapidly try to create a default of  8192  clones
+              that  immediately  die  and  wait  in a zombie state until they are reaped.  Once the maximum number of clones is reached (or
+              clone fails because one has reached the maximum allowed) the oldest clone thread is reaped and a new clone is then created in
+              a  first-in first-out manner, and then repeated.  A random clone flag is selected for each clone to try to exercise different
+              clone operarions.  The clone stressor is a Linux only option.
+
+       --clone-ops N
+              stop clone stress workers after N bogo clone operations.
+
+       --clone-max N
+              try to create as many as N clone threads. This may not be reached if the system limit is less than N.
+
+       --context N
+              start N workers that run three threads that use swapcontext(3) to implement  the  thread-to-thread  context  switching.  This
+              exercises rapid process context saving and restoring and is bandwidth limited by register and memory save and restore rates.
+
+       --context-ops N
+              stop N context workers after N bogo context switches.  In this stressor, 1 bogo op is equivalent to 1000 swapcontext calls.
+
+       --copy-file N
+              start N stressors that copy a file using the Linux copy_file_range(2) system call. 2MB chunks of data are copyied from random
+              locations from one file to random locations to a destination file.  By default, the files are 256 MB in size. Data is  sync&apos;</span>d
+              to the filesystem after each copy_file_range(2) call.
+
+       --copy-file-ops N
+              stop after N copy_file_range() calls.
+
+       --copy-file-bytes N
+              copy  file  size, the default is 256 MB. One can specify the size as % of free space on the file system or <span class="hljs-keyword">in</span> units of Bytes,
+              KBytes, MBytes and GBytes using the suffix b, k, m or g.
+
+       -c N, --cpu N
+              start N workers exercising the CPU by sequentially working through all the different CPU stress methods. Instead of  exercis&#x2010;
+              ing all the CPU stress methods, one can specify a specific CPU stress method with the --cpu-method option.
+
+       --cpu-ops N
+              stop cpu stress workers after N bogo operations.
+
+       <span class="hljs-_">-l</span> P, --cpu-load P
+              load  CPU with P percent loading <span class="hljs-keyword">for</span> the CPU stress workers. 0 is effectively a sleep (no load) and 100 is full loading.  The
+              loading loop is broken into compute time (load%) and sleep time (100% - load%). Accuracy depends on the overall load  of  the
+              processor  and the responsiveness of the scheduler, so the actual load may be different from the desired load.  Note that the
+              number of bogo CPU operations may not be linearly scaled with the load as some systems employ CPU frequency  scaling  and  so
+              heavier loads produce an increased CPU frequency and greater CPU bogo operations.
+
+              Note: This option only applies to the --cpu stressor option and not to all of the cpu class of stressors.
+
+       --cpu-load-slice S
+              note  -  this  option  is  only  useful when --cpu-load is less than 100%. The CPU load is broken into multiple busy and idle
+              cycles. Use this option to specify the duration of a busy time slice.  A negative value <span class="hljs-keyword">for</span> S specifies the number of  itera&#x2010;
+              tions to run before idling the CPU (e.g. -30 invokes 30 iterations of a CPU stress loop).  A zero value selects a random busy
+              time between 0 and 0.5 seconds.  A positive value <span class="hljs-keyword">for</span> S specifies the number of milliseconds to run  before  idling  the  CPU
+              (e.g.  100 keeps the CPU busy <span class="hljs-keyword">for</span> 0.1 seconds).  Specifying small values <span class="hljs-keyword">for</span> S lends to small time slices and smoother <span class="hljs-built_in">sched</span>&#x2010;
+              uling.  Setting --cpu-load as a relatively low value and --cpu-load-slice to be large will cycle the CPU  between  long  idle
+              and busy cycles and exercise different CPU frequencies.  The thermal range of the CPU is also cycled, so this is a good mech&#x2010;
+              anism to exercise the scheduler, frequency scaling and passive/active thermal cooling mechanisms.
+
+              Note: This option only applies to the --cpu stressor option and not to all of the cpu class of stressors.
+
+       --cpu-method method
+              specify a cpu stress method. By default, all the stress methods are exercised sequentially, however one can specify just  one
+              method to be used <span class="hljs-keyword">if</span> required.  Available cpu stress methods are described as follows:
+
+              Method           Description
+              all              iterate over all the below cpu stress methods
+              ackermann        Ackermann <span class="hljs-keyword">function</span>: compute A(3, 10), <span class="hljs-built_in">where</span>:
+                                A(m, n) = n + 1 <span class="hljs-keyword">if</span> m = 0;
+                                A(m - 1, 1) <span class="hljs-keyword">if</span> m &gt; 0 and n = 0;
+                                A(m - 1, A(m, n - 1)) <span class="hljs-keyword">if</span> m &gt; 0 and n &gt; 0
+              bitops           various  bit  operations from bithack, namely: reverse bits, parity check, bit count, round to nearest power
+                               of 2
+              callfunc         recursively call 8 argument C <span class="hljs-keyword">function</span> to a depth of 1024 calls and unwind
+              cfloat           1000 iterations of a mix of floating point complex operations
+              cdouble          1000 iterations of a mix of double floating point complex operations
+              clongdouble      1000 iterations of a mix of long double floating point complex operations
+              correlate        perform a 16384 &#xD7; 1024 correlation of random doubles
+              crc16            compute 1024 rounds of CCITT CRC16 on random data
+              decimal32        1000 iterations of a mix of 32 bit decimal floating point operations (GCC only)
+              decimal64        1000 iterations of a mix of 64 bit decimal floating point operations (GCC only)
+
+              decimal128       1000 iterations of a mix of 128 bit decimal floating point operations (GCC only)
+              dither           Floyd&#x2013;Steinberg dithering of a 1024 &#xD7; 768 random image from 8 bits down to 1 bit of depth.
+              djb2a            128 rounds of <span class="hljs-built_in">hash</span> DJB2a (Dan Bernstein <span class="hljs-built_in">hash</span> using the xor variant) on 128 to 1 bytes of random strings
+              double           1000 iterations of a mix of double precision floating point operations
+              euler            compute e using n = (1 + (1 &#xF7; n)) &#x2191; n
+              explog           iterate on n = exp(<span class="hljs-built_in">log</span>(n) &#xF7; 1.00002)
+              fibonacci        compute Fibonacci sequence of 0, 1, 1, 2, 5, 8...
+              fft              4096 sample Fast Fourier Transform
+              <span class="hljs-built_in">float</span>            1000 iterations of a mix of floating point operations
+              fnv1a            128 rounds of <span class="hljs-built_in">hash</span> FNV-1a (Fowler&#x2013;Noll&#x2013;Vo <span class="hljs-built_in">hash</span> using the xor <span class="hljs-keyword">then</span> multiply variant) on 128  to  1  bytes  of
+                               random strings
+              gamma            calculate the Euler-Mascheroni constant &#x3B3; using the limiting difference between the harmonic series (1 + 1/2
+                               + 1/3 + 1/4 + 1/5 ... + 1/n) and the natural logarithm ln(n), <span class="hljs-keyword">for</span> n = 80000.
+              gcd              compute GCD of integers
+              gray             calculate binary to gray code and gray code back to binary <span class="hljs-keyword">for</span> integers from 0 to 65535
+              hamming          compute Hamming H(8,4) codes on 262144 lots of 4 bit data. This turns 4 bit data into  8  bit  Hamming  code
+                               containing 4 parity bits. For data bits d1..d4, parity bits are computed as:
+                                 p1 = d2 + d3 + d4
+                                 p2 = d1 + d3 + d4
+                                 p3 = d1 + d2 + d4
+                                 p4 = d1 + d2 + d3
+              hanoi            solve a 21 disc Towers of Hanoi stack using the recursive solution
+              hyperbolic       compute sinh(&#x3B8;) &#xD7; cosh(&#x3B8;) + sinh(2&#x3B8;) + cosh(3&#x3B8;) <span class="hljs-keyword">for</span> <span class="hljs-built_in">float</span>, double and long double hyperbolic sine and cosine
+                               <span class="hljs-built_in">functions</span> <span class="hljs-built_in">where</span> &#x3B8; = 0 to 2&#x3C0; <span class="hljs-keyword">in</span> 1500 steps
+              idct             8 &#xD7; 8 IDCT (Inverse Discrete Cosine Transform)
+              int8             1000 iterations of a mix of 8 bit <span class="hljs-built_in">integer</span> operations
+              int16            1000 iterations of a mix of 16 bit <span class="hljs-built_in">integer</span> operations
+              int32            1000 iterations of a mix of 32 bit <span class="hljs-built_in">integer</span> operations
+              int64            1000 iterations of a mix of 64 bit <span class="hljs-built_in">integer</span> operations
+              int128           1000 iterations of a mix of 128 bit <span class="hljs-built_in">integer</span> operations (GCC only)
+              int32<span class="hljs-built_in">float</span>       1000 iterations of a mix of 32 bit <span class="hljs-built_in">integer</span> and floating point operations
+              int32double      1000 iterations of a mix of 32 bit <span class="hljs-built_in">integer</span> and double precision floating point operations
+              int32longdouble  1000 iterations of a mix of 32 bit <span class="hljs-built_in">integer</span> and long double precision floating point operations
+              int64<span class="hljs-built_in">float</span>       1000 iterations of a mix of 64 bit <span class="hljs-built_in">integer</span> and floating point operations
+              int64double      1000 iterations of a mix of 64 bit <span class="hljs-built_in">integer</span> and double precision floating point operations
+              int64longdouble  1000 iterations of a mix of 64 bit <span class="hljs-built_in">integer</span> and long double precision floating point operations
+              int128<span class="hljs-built_in">float</span>      1000 iterations of a mix of 128 bit <span class="hljs-built_in">integer</span> and floating point operations (GCC only)
+              int128double     1000 iterations of a mix of 128 bit <span class="hljs-built_in">integer</span> and double precision floating point operations (GCC only)
+              int128longdouble 1000 iterations of a mix of 128 bit <span class="hljs-built_in">integer</span> and long double precision floating point operations (GCC only)
+              int128decimal32  1000 iterations of a mix of 128 bit <span class="hljs-built_in">integer</span> and 32 bit decimal floating point operations (GCC only)
+              int128decimal64  1000 iterations of a mix of 128 bit <span class="hljs-built_in">integer</span> and 64 bit decimal floating point operations (GCC only)
+              int128decimal128 1000 iterations of a mix of 128 bit <span class="hljs-built_in">integer</span> and 128 bit decimal floating point operations (GCC only)
+              jenkin           Jenkin<span class="hljs-string">&apos;s integer hash on 128 rounds of 128..1 bytes of random data
+              jmp              Simple unoptimised compare &gt;, &lt;, == and jmp branching
+              ln2              compute ln(2) based on series:
+                                1 - 1/2 + 1/3 - 1/4 + 1/5 - 1/6 ...
+              longdouble       1000 iterations of a mix of long double precision floating point operations
+              loop             simple empty loop
+              matrixprod       matrix product of two 128 &#xD7; 128 matrices of double floats. Testing on 64 bit x86 hardware shows that this is
+                               provides  a  good  mix of memory, cache and floating point operations and is probably the best CPU method to
+                               use to make a CPU run hot.
+              nsqrt            compute sqrt() of long doubles using Newton-Raphson
+              omega            compute the omega constant defined by &#x3A9;e&#x2191;&#x3A9; = 1 using efficient iteration of &#x3A9;n+1 = (1 + &#x3A9;n) / (1 + e&#x2191;&#x3A9;n)
+              parity           compute parity using various methods from the Standford Bit Twiddling  Hacks.   Methods  employed  are:  the
+                               na&#xEF;ve  way,  the na&#xEF;ve way with the Brian Kernigan bit counting optimisation, the multiply way, the parallel
+                               way, and the lookup table ways (2 variations).
+              phi              compute the Golden Ratio &#x3D5; using series
+              pi               compute &#x3C0; using the Srinivasa Ramanujan fast convergence algorithm
+              pjw              128 rounds of hash pjw function on 128 to 1 bytes of random strings
+              prime            find all the primes in the range  1..1000000 using a slightly optimised brute  force  na&#xEF;ve  trial  division
+                               search
+              psi              compute &#x3C8; (the reciprocal Fibonacci constant) using the sum of the reciprocals of the Fibonacci numbers
+              queens           compute all the solutions of the classic 8 queens problem for board sizes 1..12
+
+
+
+
+
+              rand             16384  iterations  of rand(), where rand is the MWC pseudo random number generator.  The MWC random function
+                               concatenates two 16 bit multiply-with-carry generators:
+                                x(n) = 36969 &#xD7; x(n - 1) + carry,
+                                y(n) = 18000 &#xD7; y(n - 1) + carry mod 2 &#x2191; 16
+
+                               and has period of around 2 &#x2191; 60
+              rand48           16384 iterations of drand48(3) and lrand48(3)
+              rgb              convert RGB to YUV and back to RGB (CCIR 601)
+              sdbm             128 rounds of hash sdbm (as used in the SDBM database and GNU awk) on 128 to 1 bytes of random strings
+              sieve            find the primes in the range 1..10000000 using the sieve of Eratosthenes
+              sqrt             compute sqrt(rand()), where rand is the MWC pseudo random number generator
+              trig             compute sin(&#x3B8;) &#xD7; cos(&#x3B8;) + sin(2&#x3B8;) + cos(3&#x3B8;) for float, double and long  double  sine  and  cosine  functions
+                               where &#x3B8; = 0 to 2&#x3C0; in 1500 steps
+              union            perform  integer  arithmetic  on a mix of bit fields in a C union.  This exercises how well the compiler and
+                               CPU can perform integer bit field loads and stores.
+              zeta             compute the Riemann Zeta function &#x3B6;(s) for s = 2.0..10.0
+
+              Note that some of these methods try to exercise the CPU with computations found in some real world use  cases.  However,  the
+              code has not been optimised on a per-architecture basis, so may be a sub-optimal compared to hand-optimised code used in some
+              applications.  They do try to represent the typical instruction mixes found in these use cases.
+
+       --cpu-online N
+              start N workers that put randomly selected CPUs offline and online. This Linux only stressor requires root privilege to  per&#x2010;
+              form this action.
+
+       --cpu-online-ops N
+              stop after offline/online operations.
+
+       --crypt N
+              start N workers that encrypt a 16 character random password using crypt(3).  The password is encrypted using MD5, SHA-256 and
+              SHA-512 encryption methods.
+
+       --crypt-ops N
+              stop after N bogo encryption operations.
+
+       --daemon N
+              start N workers that each create a daemon that dies immediately after creating another daemon and  so  on.  This  effectively
+              works  through  the process table with short lived processes that do not have a parent and are waited for by init.  This puts
+              pressure on init to do rapid child reaping.  The daemon processes perform the usual mix of calls to turn  into  typical  UNIX
+              daemons, so this artificially mimics very heavy daemon system stress.
+
+       --daemon-ops N
+              stop daemon workers after N daemons have been created.
+
+       --dccp N
+              start  N  workers that send and receive data using the Datagram Congestion Control Protocol (DCCP) (RFC4340). This involves a
+              pair of client/server processes performing rapid connect, send and receives and disconnects on the local host.
+
+       --dccp-domain D
+              specify the domain to use, the default is ipv4. Currently ipv4 and ipv6 are supported.
+
+       --dccp-port P
+              start DCCP at port P. For N dccp worker processes, ports P to P - 1 are used.
+
+       --dccp-ops N
+              stop dccp stress workers after N bogo operations.
+
+       --dccp-opts [ send | sendmsg | sendmmsg ]
+              by default, messages are sent using send(2). This option allows one to specify the sending method using  send(2),  sendmsg(2)
+              or sendmmsg(2).  Note that sendmmsg is only available for Linux systems that support this system call.
+
+       -D N, --dentry N
+              start  N  workers that create and remove directory entries.  This should create file system meta data activity. The directory
+              entry names are suffixed by a gray-code encoded number to try to mix up the hashing of the namespace.
+
+       --dentry-ops N
+              stop denty thrash workers after N bogo dentry operations.
+
+       --dentry-order [ forward | reverse | stride | random ]
+              specify unlink order of dentries, can be one of forward, reverse, stride or random.  By default,  dentries  are  unlinked  in
+              random  order.   The  forward  order  will unlink them from first to last, reverse order will unlink them from last to first,
+              stride order will unlink them by stepping around order in a quasi-random pattern and random order will randomly select one of
+              forward, reverse or stride orders.
+
+       --dentries N
+              create N dentries per dentry thrashing loop, default is 2048.
+
+       --dir N
+              start N workers that create and remove directories using mkdir and rmdir.
+
+       --dir-ops N
+              stop directory thrash workers after N bogo directory operations.
+
+       --dir-dirs N
+              exercise dir on N directories. The default is 8192 directories, this allows 64 to 65536 directories to be used instead.
+
+       --dirdeep N
+              start  N  workers that create multiple levels of directories to a maximum depth as limited by PATH_MAX or ENAMETOOLONG (which
+              ever occurs first).
+
+       --dirdeep-ops N
+              stop directory depth workers after N bogo directory operations.
+
+       --dnotify N
+              start N workers performing file system activities such as making/deleting files/directories, renaming files, etc.  to  stress
+              exercise the various dnotify events (Linux only).
+
+       --dnotify-ops N
+              stop inotify stress workers after N dnotify bogo operations.
+
+       --dup N
+              start  N  workers  that  perform  dup(2)  and then close(2) operations on /dev/zero.  The maximum opens at one time is system
+              defined, so the test will run up to this maximum, or 65536 open file descriptors, which ever comes first.
+
+       --dup-ops N
+              stop the dup stress workers after N bogo open operations.
+
+       --epoll N
+              start N workers that perform various related socket stress activity using epoll_wait(2) to monitor  and  handle  new  connec&#x2010;
+              tions.  This  involves  client/server  processes  performing  rapid connect, send/receives and disconnects on the local host.
+              Using epoll allows a large number of connections to be efficiently handled, however, this can lead to  the  connection  table
+              filling  up  and blocking further socket connections, hence impacting on the epoll bogo op stats.  For ipv4 and ipv6 domains,
+              multiple servers are spawned on multiple ports. The epoll stressor is for Linux only.
+
+       --epoll-domain D
+              specify the domain to use, the default is unix (aka local). Currently ipv4, ipv6 and unix are supported.
+
+       --epoll-port P
+              start at socket port P. For N epoll worker processes, ports P to (P * 4) - 1 are used for ipv4, ipv6 domains and ports P to P
+              - 1 are used for the unix domain.
+
+       --epoll-ops N
+              stop epoll workers after N bogo operations.
+
+       --eventfd N
+              start  N  parent  and child worker processes that read and write 8 byte event messages between them via the eventfd mechanism
+              (Linux only).
+
+       --eventfd-ops N
+              stop eventfd workers after N bogo operations.
+
+       --exec N
+              start N workers continually forking children that exec stress-ng and then exit almost immediately.
+
+       --exec-ops N
+              stop exec stress workers after N bogo operations.
+
+       --exec-max P
+              create P child processes that exec stress-ng and then wait for them to exit per iteration. The default is just 1; higher val&#x2010;
+              ues  will create many temporary zombie processes that are waiting to be reaped. One can potentially fill up the process table
+              using high values for --exec-max and --exec.
+
+       -F N, --fallocate N
+              start N workers continually fallocating (preallocating file space) and ftuncating (file truncating) temporary files.  If  the
+              file is larger than the free space, fallocate will produce an ENOSPC error which is ignored by this stressor.
+
+       --fallocate-bytes N
+              allocated  file  size,  the  default  is  1 GB. One can specify the size as % of free space on the file system or in units of
+              Bytes, KBytes, MBytes and GBytes using the suffix b, k, m or g.
+
+       --fallocate-ops N
+              stop fallocate stress workers after N bogo fallocate operations.
+
+       --fanotify N
+              start N workers performing file system activities such as creating, opening, writing, reading and unlinking files to exercise
+              the  fanotify event monitoring interface (Linux only).  Each stressor runs a child process to generate file events and a par&#x2010;
+              ent process to read file events using fanotify.
+
+       --fanotify-ops N
+              stop fanotify stress workers after N bogo fanotify events.
+
+       --fault N
+              start N workers that generates minor and major page faults.
+
+       --fault-ops N
+              stop the page fault workers after N bogo page fault operations.
+
+       --fcntl N
+              start N workers that perform fcntl(2) calls with various commands.  The  exercised  commands  (if  available)  are:  F_DUPFD,
+              F_DUPFD_CLOEXEC,  F_GETFD,  F_SETFD,  F_GETFL,  F_SETFL,  F_GETOWN,  F_SETOWN,  F_GETOWN_EX, F_SETOWN_EX, F_GETSIG, F_SETSIG,
+              F_GETLK, F_SETLK, F_SETLKW, F_OFD_GETLK, F_OFD_SETLK and F_OFD_SETLKW.
+
+       --fcntl-ops N
+              stop the fcntl workers after N bogo fcntl operations.
+
+       --fiemap N
+              start N workers that each create a file with many randomly changing extents and has 4 child processes per worker that  gather
+              the extent information using the FS_IOC_FIEMAP ioctl(2).
+
+       --fiemap-ops N
+              stop after N fiemap bogo operations.
+
+       --fiemap-bytes N
+              specify  the  size of the fiemap&apos;</span>d file <span class="hljs-keyword">in</span> bytes.  One can specify the size as % of free space on the file system or <span class="hljs-keyword">in</span> units
+              of Bytes, KBytes, MBytes and GBytes using the suffix b, k, m or g.  Larger files will  contain  more  extents,  causing  more
+              stress when gathering extent information.
+
+       --fifo N
+              start N workers that exercise a named pipe by transmitting 64 bit integers.
+
+       --fifo-ops N
+              stop fifo workers after N bogo pipe write operations.
+
+       --fifo-readers N
+              <span class="hljs-keyword">for</span> each worker, create N fifo reader workers that <span class="hljs-built_in">read</span> the named pipe using simple blocking reads.
+
+       --filename N
+              start N workers that exercise file creation using various length filenames containing a range of allower filename characters.
+              This will try to see <span class="hljs-keyword">if</span> it can exceed the file system allowed filename length was  well  as  <span class="hljs-built_in">test</span>  various  filename  lengths
+              between 1 and the maximum allowed by the file system.
+
+       --filename-ops N
+              stop filename workers after N bogo filename tests.
+
+       --filename-opts opt
+              use characters <span class="hljs-keyword">in</span> the filename based on option <span class="hljs-string">&apos;opt&apos;</span>. Valid options are:
+
+              Option           Description
+              probe            default option, probe the file system <span class="hljs-keyword">for</span> valid allowed characters <span class="hljs-keyword">in</span> a file name and use these
+              posix            use characters as specifed by The Open Group Base Specifications Issue 7, POSIX.1-2008, 3.278 Portable File&#x2010;
+                               name Character Set
+              ext              use characters allowed by the ext2, ext3, ext4 file systems, namely any 8 bit character apart from NUL and /
+
+       --flock N
+              start N workers locking on a single file.
+
+       --flock-ops N
+              stop flock stress workers after N bogo flock operations.
+
+       <span class="hljs-_">-f</span> N, --fork N
+              start N workers continually forking children that immediately exit.
+
+       --fork-ops N
+              stop fork stress workers after N bogo operations.
+
+       --fork-max P
+              create P child processes and <span class="hljs-keyword">then</span> <span class="hljs-built_in">wait</span> <span class="hljs-keyword">for</span> them to <span class="hljs-built_in">exit</span> per iteration. The default is just 1; higher values will create  many
+              temporary zombie processes that are waiting to be reaped. One can potentially fill up the the process table using high values
+              <span class="hljs-keyword">for</span> --fork-max and --fork.
+
+       --fp-error N
+              start N workers that generate floating point exceptions. Computations are performed to force and check <span class="hljs-keyword">for</span> the  FE_DIVBYZERO,
+              FE_INEXACT, FE_INVALID, FE_OVERFLOW and FE_UNDERFLOW exceptions.  EDOM and ERANGE errors are also checked.
+
+       --fp-error-ops N
+              stop after N bogo floating point exceptions.
+
+       --fstat N
+              start N workers fstat<span class="hljs-string">&apos;ing files in a directory (default is /dev).
+
+       --fstat-ops N
+              stop fstat stress workers after N bogo fstat operations.
+
+       --fstat-dir directory
+              specify the directory to fstat to override the default of /dev.  All the files in the directory will be fstat&apos;</span>d repeatedly.
+
+       --full N
+              start  N  workers  that  exercise /dev/full.  This attempts to write to the device (<span class="hljs-built_in">which</span> should always get error ENOSPC), to
+              <span class="hljs-built_in">read</span> from the device (<span class="hljs-built_in">which</span> should always <span class="hljs-built_in">return</span> a buffer of zeros) and to seek randomly on the device (<span class="hljs-built_in">which</span>  should  always
+              succeed).  (Linux only).
+
+       --full-ops N
+              stop the stress full workers after N bogo I/O operations.
+
+       --futex N
+              start N workers that rapidly exercise the futex system call. Each worker has two processes, a futex waiter and a futex waker.
+              The waiter waits with a very small timeout to stress the timeout and rapid polled futex waiting. This  is  a  Linux  specific
+              stress option.
+
+       --futex-ops N
+              stop futex workers after N bogo successful futex <span class="hljs-built_in">wait</span> operations.
+
+       --get N
+              start N workers that call system calls that fetch data from the kernel, currently these are: getpid, getppid, getcwd, getgid,
+              getegid, getuid, getgroups, getpgrp, getpgid, getpriority, getresgid, getresuid, getrlimit, prlimit, getrusage, getsid,  get&#x2010;
+              tid, getcpu, gettimeofday, uname, adjtimex, sysfs.  Some of these system calls are OS specific.
+
+       --get-ops N
+              stop get workers after N bogo get operations.
+
+       --getdent N
+              start  N  workers  that  recursively  <span class="hljs-built_in">read</span> directories /proc, /dev/, /tmp, /sys and /run using getdents and getdents64 (Linux
+              only).
+
+       --getdent-ops N
+              stop getdent workers after N bogo getdent bogo operations.
+
+       --getrandom N
+              start N workers that get 8192 random bytes from the /dev/urandom pool using the getrandom(2) system call  (Linux)  or  geten&#x2010;
+              tropy(2) (OpenBSD).
+
+       --getrandom-ops N
+              stop getrandom workers after N bogo get operations.
+
+       --handle N
+              start N workers that exercise the name_to_handle_at(2) and open_by_handle_at(2) system calls. (Linux only).
+
+       --handle-ops N
+              stop after N handle bogo operations.
+
+       <span class="hljs-_">-d</span> N, --hdd N
+              start  N  workers  continually  writing,  reading and removing temporary files. The default mode is to stress <span class="hljs-built_in">test</span> sequential
+              writes and reads.  With the --ggressive option enabled without any --hdd-opts options the hdd stressor will work through  all
+              the --hdd-opt options one by one to cover a range of I/O options.
+
+       --hdd-bytes N
+              write N bytes <span class="hljs-keyword">for</span> each hdd process, the default is 1 GB. One can specify the size as % of free space on the file system or <span class="hljs-keyword">in</span>
+              units of Bytes, KBytes, MBytes and GBytes using the suffix b, k, m or g.
+
+       --hdd-opts list
+              specify various stress <span class="hljs-built_in">test</span> options as a comma separated list. Options are as follows:
+
+              Option           Description
+              direct           try to minimize cache effects of the I/O. File I/O writes are performed directly from user space buffers and
+                               synchronous transfer is also attempted.  To guarantee synchronous I/O, also use the sync option.
+              dsync            ensure  output  has  been  transferred  to underlying hardware and file metadata has been updated (using the
+                               O_DSYNC open flag). This is equivalent to each write(2) being followed by a call to fdatasync(2).  See  also
+                               the fdatasync option.
+              fadv-dontneed    advise kernel to expect the data will not be accessed <span class="hljs-keyword">in</span> the near future.
+              fadv-noreuse     advise kernel to expect the data to be accessed only once.
+              fadv-normal      advise kernel there are no explicit access pattern <span class="hljs-keyword">for</span> the data. This is the default advice assumption.
+              fadv-rnd         advise kernel to expect random access patterns <span class="hljs-keyword">for</span> the data.
+              fadv-seq         advise kernel to expect sequential access patterns <span class="hljs-keyword">for</span> the data.
+              fadv-willneed    advise kernel to expect the data to be accessed <span class="hljs-keyword">in</span> the near future.
+              fsync            flush all modified <span class="hljs-keyword">in</span>-core data after each write to the output device using an explicit fsync(2) call.
+              fdatasync        similar to fsync, but <span class="hljs-keyword">do</span> not flush the modified metadata unless metadata is required <span class="hljs-keyword">for</span> later data reads to
+                               be handled correctly. This uses an explicit fdatasync(2) call.
+              iovec            use readv/writev multiple buffer I/Os rather than <span class="hljs-built_in">read</span>/write. Instead of 1 <span class="hljs-built_in">read</span>/write operation, the  buffer
+                               is broken into an iovec of 16 buffers.
+              noatime          <span class="hljs-keyword">do</span> not update the file last access timestamp, this can reduce metadata writes.
+              sync             ensure  output  has been transferred to underlying hardware (using the O_SYNC open flag). This is equivalent
+                               to a each write(2) being followed by a call to fsync(2). See also the fsync option.
+              rd-rnd           <span class="hljs-built_in">read</span> data randomly. By default, written data is not <span class="hljs-built_in">read</span> back, however, this option will force it to be <span class="hljs-built_in">read</span>
+                               back randomly.
+              rd-seq           <span class="hljs-built_in">read</span>  data sequentially. By default, written data is not <span class="hljs-built_in">read</span> back, however, this option will force it to be
+                               <span class="hljs-built_in">read</span> back sequentially.
+              syncfs           write all buffered modifications of file metadata and data on the filesystem that contains  the  hdd  worker
+                               files.
+              utimes           force update of file timestamp <span class="hljs-built_in">which</span> may increase metadata writes.
+              wr-rnd           write data randomly. The wr-seq option cannot be used at the same time.
+              wr-seq           write data sequentially. This is the default <span class="hljs-keyword">if</span> no write modes are specified.
+
+       Note that some of these options are mutually exclusive, <span class="hljs-keyword">for</span> example, there can be only one method of writing or reading.  Also, fad&#x2010;
+       vise flags may be mutually exclusive, <span class="hljs-keyword">for</span> example fadv-willneed cannot be used with fadv-dontneed.
+
+       --hdd-ops N
+              stop hdd stress workers after N bogo operations.
+
+       --hdd-write-size N
+              specify size of each write <span class="hljs-keyword">in</span> bytes. Size can be from 1 byte to 4MB.
+
+       --heapsort N
+              start N workers that sort 32 bit integers using the BSD heapsort.
+
+       --heapsort-ops N
+              stop heapsort stress workers after N bogo heapsorts.
+
+       --heapsort-size N
+              specify number of 32 bit integers to sort, default is 262144 (256 &#xD7; 1024).
+
+       --hsearch N
+              start N workers that search a 80% full <span class="hljs-built_in">hash</span> table using hsearch(3). By default, there are 8192  elements  inserted  into  the
+              <span class="hljs-built_in">hash</span> table.  This is a useful method to exercise access of memory and processor cache.
+
+       --hsearch-ops N
+              stop the hsearch workers after N bogo hsearch operations are completed.
+
+       --hsearch-size N
+              specify the number of <span class="hljs-built_in">hash</span> entries to be inserted into the <span class="hljs-built_in">hash</span> table. Size can be from 1K to 4M.
+
+       --icache N
+              start  N  workers  that  stress the instruction cache by forcing instruction cache reloads.  This is achieved by modifying an
+              instruction cache line,  causing the processor to reload it when we call a <span class="hljs-keyword">function</span> <span class="hljs-keyword">in</span> inside it. Currently only verified and
+              enabled <span class="hljs-keyword">for</span> Intel x86 CPUs.
+
+       --icache-ops N
+              stop the icache workers after N bogo icache operations are completed.
+
+       --icmp-flood N
+              start N workers that flood localhost with randonly sized ICMP ping packets.  This option can only be run as root.
+
+       --icmp-flood-ops N
+              stop icmp flood workers after N ICMP ping packets have been sent.
+
+       --inotify N
+              start  N  workers  performing  file system activities such as making/deleting files/directories, moving files, etc. to stress
+              exercise the various inotify events (Linux only).
+
+       --inotify-ops N
+              stop inotify stress workers after N inotify bogo operations.
+
+       -i N, --io N
+              start N workers continuously calling sync(2) to commit buffer cache to disk.  This can be used <span class="hljs-keyword">in</span> conjunction with the  --hdd
+              options.
+
+       --io-ops N
+              stop io stress workers after N bogo operations.
+
+       --iomix N
+              start  N  workers that perform a mix of sequential, random and memory mapped <span class="hljs-built_in">read</span>/write operations as well as forced sync<span class="hljs-string">&apos;ing
+              and (if run as root) cache dropping.  Multiple child processes are spawned to all share a single file and  perform  different
+              I/O operations on the same file.
+
+       --iomix-bytes N
+              write  N  bytes  for  each iomix worker process, the default is 1 GB. One can specify the size as % of free space on the file
+              system or in units of Bytes, KBytes, MBytes and GBytes using the suffix b, k, m or g.
+
+       --iomix-ops N
+              stop iomix stress workers after N bogo iomix I/O operations.
+
+       --ioprio N
+              start N workers that exercise the ioprio_get(2) and ioprio_set(2) system calls (Linux only).
+
+       --ioprio-ops N
+              stop after N io priority bogo operations.
+
+       --itimer N
+              start N workers that exercise the system interval timers. This sets up an ITIMER_PROF itimer that generates a SIGPROF signal.
+              The  default frequency for the itimer is 1 MHz, however, the Linux kernel will set this to be no more that the jiffy setting,
+              hence high frequency SIGPROF signals are not normally possible.  A busy loop spins on getitimer(2) calls to consume  CPU  and
+              hence decrement the itimer based on amount of time spent in CPU and system time.
+
+       --itimer-ops N
+              stop itimer stress workers after N bogo itimer SIGPROF signals.
+
+       --itimer-freq F
+              run  itimer  at  F Hz; range from 1 to 1000000 Hz. Normally the highest frequency is limited by the number of jiffy ticks per
+              second, so running above 1000 Hz is difficult to attain in practice.
+
+       --kcmp N
+              start N workers that use kcmp(2) to compare parent and child processes to determine if they  share  kernel  resources  (Linux
+              only).
+
+       --kcmp-ops N
+              stop kcmp workers after N bogo kcmp operations.
+
+       --key N
+              start  N  workers  that  create  and manipulate keys using add_key(2) and ketctl(2). As many keys are created as the per user
+              limit allows and then the  following  keyctl  commands  are  exercised  on  each  key:  KEYCTL_SET_TIMEOUT,  KEYCTL_DESCRIBE,
+              KEYCTL_UPDATE, KEYCTL_READ, KEYCTL_CLEAR and KEYCTL_INVALIDATE.
+
+       --key-ops N
+              stop key workers after N bogo key operations.
+
+       --kill N
+              start  N  workers  sending  SIGUSR1  kill signals to a SIG_IGN signal handler. Most of the process time will end up in kernel
+              space.
+
+       --kill-ops N
+              stop kill workers after N bogo kill operations.
+
+       --klog N
+              start N workers exercising the kernel syslog(2) system call.  This will attempt to read the kernel  log  with  various  sized
+              read buffers. Linux only.
+
+       --klog-ops N
+              stop klog workers after N syslog operations.
+
+       --lease N
+              start  N  workers locking, unlocking and breaking leases via the fcntl(2) F_SETLEASE operation. The parent processes continu&#x2010;
+              ally lock and unlock a lease on a file while a user selectable number of child processes open the file  with  a  non-blocking
+              open  to  generate  SIGIO lease breaking notifications to the parent.  This stressor is only available if F_SETLEASE, F_WRLCK
+              and F_UNLCK support is provided by fcntl(2).
+
+       --lease-ops N
+              stop lease workers after N bogo operations.
+
+       --lease-breakers N
+              start N lease breaker child processes per lease worker.  Normally one child is plenty to  force  many  SIGIO  lease  breaking
+              notification signals to the parent, however, this option allows one to specify more child processes if required.
+
+       --link N
+              start N workers creating and removing hardlinks.
+
+       --link-ops N
+              stop link stress workers after N bogo operations.
+
+       --lockbus N
+              start  N workers that rapidly lock and increment 64 bytes of randomly chosen memory from a 16MB mmap&apos;</span>d region (Intel x86 CPUs
+              only).  This will cause cacheline misses and stalling of CPUs.
+
+       --lockbus-ops N
+              stop lockbus workers after N bogo operations.
+
+       --locka N
+              start N workers that randomly lock and unlock regions of a file using the POSIX advisory  locking  mechanism  (see  fcntl(2),
+              F_SETLK,  F_GETLK).  Each  worker creates a 1024 KB file and attempts to hold a maximum of 1024 concurrent locks with a child
+              process that also tries to hold 1024 concurrent locks. Old locks are unlocked <span class="hljs-keyword">in</span> a first-in, first-out basis.
+
+       --locka-ops N
+              stop locka workers after N bogo locka operations.
+
+       --lockf N
+              start N workers that randomly lock and unlock regions of a file using the POSIX lockf(3) locking mechanism. Each worker  cre&#x2010;
+              ates  a  64 KB file and attempts to hold a maximum of 1024 concurrent locks with a child process that also tries to hold 1024
+              concurrent locks. Old locks are unlocked <span class="hljs-keyword">in</span> a first-in, first-out basis.
+
+       --lockf-ops N
+              stop lockf workers after N bogo lockf operations.
+
+       --lockf-nonblock
+              instead of using blocking F_LOCK lockf(3) commands, use non-blocking F_TLOCK commands and re-try <span class="hljs-keyword">if</span> the  lock  failed.   This
+              creates  extra  system call overhead and CPU utilisation as the number of lockf workers increases and should increase locking
+              contention.
+
+       --lockofd N
+              start N workers that randomly lock and unlock regions of a file using the Linux open file description  locks  (see  fcntl(2),
+              F_OFD_SETLK, F_OFD_GETLK).  Each worker creates a 1024 KB file and attempts to hold a maximum of 1024 concurrent locks with a
+              child process that also tries to hold 1024 concurrent locks. Old locks are unlocked <span class="hljs-keyword">in</span> a first-in, first-out basis.
+
+       --lockofd-ops N
+              stop lockofd workers after N bogo lockofd operations.
+
+       --longjmp N
+              start N workers that exercise setjmp(3)/longjmp(3) by rapid looping on longjmp calls.
+
+       --longjmp-ops N
+              stop longjmp stress workers after N bogo longjmp operations (1 bogo op is 1000 longjmp calls).
+
+       --lsearch N
+              start N workers that linear search a unsorted array of 32 bit integers using lsearch(3). By default, there are 8192  elements
+              <span class="hljs-keyword">in</span> the array.  This is a useful method to exercise sequential access of memory and processor cache.
+
+       --lsearch-ops N
+              stop the lsearch workers after N bogo lsearch operations are completed.
+
+       --lsearch-size N
+              specify the size (number of 32 bit integers) <span class="hljs-keyword">in</span> the array to lsearch. Size can be from 1K to 4M.
+
+       --madvise N
+              start N workers that apply random madvise(2) advise settings on pages of a 4MB file backed shared memory mapping.
+
+       --madvice-ops N
+              stop madvise stressors after N bogo madvise operations.
+
+       --malloc N
+              start N workers continuously calling malloc(3), calloc(3), realloc(3) and free(3). By default, up to 65536 allocations can be
+              active at any point, but this can be altered with the --malloc-max option.  Allocation, reallocation and freeing  are  chosen
+              at  random;  50% of the time memory is allocation (via malloc, calloc or realloc) and 50% of the time allocations are free<span class="hljs-string">&apos;d.
+              Allocation sizes are also random, with the maximum allocation size controlled by the --malloc-bytes option, the default  size
+              being 64K.  The worker is re-started if it is killed by the out of mememory (OOM) killer.
+
+       --malloc-bytes N
+              maximum  per allocation/reallocation size. Allocations are randomly selected from 1 to N bytes. One can specify the size as %
+              of total available memory or in units of Bytes, KBytes, MBytes and GBytes using the suffix b, k, m or  g.   Large  allocation
+              sizes cause the memory allocator to use mmap(2) rather than expanding the heap using brk(2).
+
+       --malloc-max N
+              maximum  number  of  active  allocations  allowed. Allocations are chosen at random and placed in an allocation slot. Because
+              about 50%/50% split between allocation and freeing, typically half of the allocation slots are in use at any one time.
+
+       --malloc-ops N
+              stop after N malloc bogo operations. One bogo operations relates to a successful malloc(3), calloc(3) or realloc(3).
+
+       --malloc-thresh N
+              specify the threshold where malloc uses mmap(2) instead of sbrk(2) to allocate more memory. This is only available on systems
+              that provide the GNU C mallopt(3) tuning function.
+
+       --matrix N
+              start  N  workers  that  perform  various  matrix operations on floating point values. By default, this will exercise all the
+              matrix stress methods one by one.  One can specify a specific matrix stress method with the --matrix-method option.
+
+       --matrix-ops N
+              stop matrix stress workers after N bogo operations.
+
+       --matrix-method method
+              specify a matrix stress method. Available matrix stress methods are described as follows:
+
+              Method           Description
+              all              iterate over all the below matrix stress methods
+              add              add two N &#xD7; N matrices
+
+              copy             copy one N &#xD7; N matrix to another
+              div              divide an N &#xD7; N matrix by a scalar
+              hadamard         Hadamard product of two N &#xD7; N matrices
+              frobenius        Frobenius product of two N &#xD7; N matrices
+              mean             arithmetic mean of two N &#xD7; N matrices
+              mult             multiply an N &#xD7; N matrix by a scalar
+              prod             product of two N &#xD7; N matrices
+              sub              subtract one N &#xD7; N matrix from another N &#xD7; N matrix
+              trans            transpose an N &#xD7; N matrix
+
+       --matrix-size N
+              specify the N &#xD7; N size of the matrices.  Smaller values result in a floating point compute throughput bound  stressor,  where
+              as large values result in a cache and/or memory bandwidth bound stressor.
+
+       --membarrier N
+              start N workers that exercise the membarrier system call (Linux only).
+
+       --membarrier-ops N
+              stop membarrier stress workers after N bogo membarrier operations.
+
+       --memcpy N
+              start  N  workers that copy 2MB of data from a shared region to a buffer using memcpy(3) and then move the data in the buffer
+              with memmove(3) with 3 different alignments. This will exercise processor cache and system memory.
+
+       --memcpy-ops N
+              stop memcpy stress workers after N bogo memcpy operations.
+
+       --memfd N
+              start N workers that create allocations of 1024 pages using memfd_create(2) and ftruncate(2) for allocation  and  mmap(2)  to
+              map the allocation into the process address space.  (Linux only).
+
+       --memfd-bytes N
+              allocate N bytes per memfd stress worker, the default is 256MB. One can specify the size in as % of total available memory or
+              in units of Bytes, KBytes, MBytes and GBytes using the suffix b, k, m or g.
+
+       --memfd-fds N
+              create N memfd file descriptors, the default is 256. One can select 8 to 4096 memfd file descriptions with this option.
+
+       --memfd-ops N
+              stop after N memfd-create(2) bogo operations.
+
+       --mergesort N
+              start N workers that sort 32 bit integers using the BSD mergesort.
+
+       --mergesort-ops N
+              stop mergesort stress workers after N bogo mergesorts.
+
+       --mergesort-size N
+              specify number of 32 bit integers to sort, default is 262144 (256 &#xD7; 1024).
+
+       --mincore N
+              start N workers that walk through all of memory 1 page at a time checking of the page mapped and also is resident  in  memory
+              using mincore(2).
+
+       --mincore-ops N
+              stop after N mincore bogo operations. One mincore bogo op is equivalent to a 1000 mincore(2) calls.
+
+       --mincore-random
+              instead  of  walking  through  pages sequentially, select pages at random. The chosen address is iterated over by shifting it
+              right one place and checked by mincore until the address is less or equal to the page size.
+
+       --mknod N
+              start N workers that create and remove fifos, empty files and named sockets using mknod and unlink.
+
+       --mknod-ops N
+              stop directory thrash workers after N bogo mknod operations.
+
+       --mlock N
+              start N workers that lock and unlock memory mapped pages using mlock(2), munlock(2), mlockall(2) and munlockall(2).  This  is
+              achieved  by  the mapping of three contiguous pages and then locking the second page, hence ensuring non-contiguous pages are
+              locked . This is then repeated until the maximum allowed mlocks or a maximum of 262144 mappings are made.  Next,  all  future
+              mappings are mlocked and the worker attempts to map 262144 pages, then all pages are munlocked and the pages are unmapped.
+
+       --mlock-ops N
+              stop after N mlock bogo operations.
+
+       --mmap N
+              start  N  workers  continuously  calling  mmap(2)/munmap(2).   The  initial  mapping  is  a  large  chunk  (size specified by
+              --mmap-bytes) followed by pseudo-random 4K unmappings, then pseudo-random 4K mappings, and then linear 4K  unmappings.   Note
+              that  this  can  cause  systems  to trip the kernel OOM killer on Linux systems if not enough physical memory and swap is not
+              available.  The MAP_POPULATE option is used to populate pages into memory on systems that support this.  By  default,  anony&#x2010;
+              mous  mappings  are  used,  however,  the  --mmap-file  and  --mmap-async options allow one to perform file based mappings if
+              desired.
+
+       --mmap-ops N
+              stop mmap stress workers after N bogo operations.
+
+       --mmap-async
+              enable file based memory mapping and use asynchronous msync&apos;</span>ing on each page, see --mmap-file.
+
+       --mmap-bytes N
+              allocate N bytes per mmap stress worker, the default is 256MB. One can specify the size as % of total available memory or  <span class="hljs-keyword">in</span>
+              units of Bytes, KBytes, MBytes and GBytes using the suffix b, k, m or g.
+
+       --mmap-file
+              <span class="hljs-built_in">enable</span> file based memory mapping and by default use synchronous msync<span class="hljs-string">&apos;ing on each page.
+
+       --mmap-mprotect
+              change  protection  settings  on  each page of memory.  Each time a page or a group of pages are mapped or remapped then this
+              option will make the pages read-only, write-only, exec-only, and read-write.
+
+       --mmapfork N
+              start N workers that each fork off 32 child processes, each of which tries to allocate some of the free memory  left  in  the
+              system  (and trying to avoid any swapping).  The child processes then hint that the allocation will be needed with madvise(2)
+              and then memset it to zero and hint that it is no longer needed with  madvise  before  exiting.   This  produces  significant
+              amounts of VM activity, a lot of cache misses and with minimal swapping.
+
+       --mmapfork-ops N
+              stop after N mmapfork bogo operations.
+
+       --mmapmany N
+              start  N  workers  that attempt to create the maximum allowed per-process memory mappings. This is achieved by mapping 3 con&#x2010;
+              tiguous pages and then unmapping the middle page hence splitting the mapping into two. This is then repeated until the  maxi&#x2010;
+              mum allowed mappings or a maximum of 262144 mappings are made.
+
+       --mmapmany-ops N
+              stop after N mmapmany bogo operations.
+
+       --mremap N
+              start  N workers continuously calling mmap(2), mremap(2) and munmap(2).  The initial anonymous mapping is a large chunk (size
+              specified by --mremap-bytes) and then iteratively halved in size by remapping all the way down to a page size and  then  back
+              up to the original size.  This worker is only available for Linux.
+
+       --mremap-ops N
+              stop mremap stress workers after N bogo operations.
+
+       --mremap-bytes N
+              initially allocate N bytes per remap stress worker, the default is 256MB. One can specify the size in units of Bytes, KBytes,
+              MBytes and GBytes using the suffix b, k, m or g.
+
+       --msg N
+              start N sender and receiver processes that continually send and receive messages using System V message IPC.
+
+       --msg-ops N
+              stop after N bogo message send operations completed.
+
+       --msync N
+              start N stressors that msync data from a file backed memory mapping from memory back to the file and msync modified data from
+              the file back to the mapped memory. This exercises the msync(2) MS_SYNC and MS_INVALIDATE sync operations.
+
+       --msync-ops N
+              stop after N msync bogo operations completed.
+
+       --msync-bytes N
+              allocate N bytes for the memory mapped file, the default is 256MB. One can specify the size as % of total available memory or
+              in units of Bytes, KBytes, MBytes and GBytes using the suffix b, k, m or g.
+
+       --mq N start N sender and receiver processes that continually send and receive messages using POSIX message queues. (Linux only).
+
+       --mq-ops N
+              stop after N bogo POSIX message send operations completed.
+
+       --mq-size N
+              specify size of POSIX message queue. The default size is 10 messages and most Linux systems this is the maximum allowed  size
+              for  normal  users. If the given size is greater than the allowed message queue size then a warning is issued and the maximum
+              allowed size is used instead.
+
+       --netlink-proc N
+              start N workers that spawn child processes and monitor fork/exec/exit process events via the  proc  netlink  connector.  Each
+              event received is counted as a bogo op. This stressor can only be run on Linux and with root privilege.
+
+       --netlink-proc-ops N
+              stop the proc netlink connector stressors after N bogo ops.
+
+       --nice N
+              start  N  cpu  consuming  workers that exercise the available nice levels. Each iteration forks off a child process that runs
+              through the all the nice levels running a busy loop for 0.1 seconds per level and then exits.
+
+       --nice-ops N
+              stop after N nice bogo nice loops
+
+       --nop N
+              start N workers that consume cpu cycles issuing no-op instructions. This stressor is available if the assembler supports  the
+              &quot;nop&quot; instruction.
+
+       --nop-ops N
+              stop nop workers after N no-op bogo operations. Each bogo-operation is equivalent to 256 loops of 256 no-op instructions.
+
+       --null N
+              start N workers writing to /dev/null.
+
+       --null-ops N
+              stop null stress workers after N /dev/null bogo write operations.
+
+       --numa N
+              start  N  workers  that  migrate  stressors  and  a  4MB memory mapped buffer around all the available NUMA nodes.  This uses
+              migrate_pages(2) to move the stressors and mbind(2) and move_pages(2) to move the pages of  the  mapped  buffer.  After  each
+              move,  the  buffer is written to force activity over the bus which results cache misses.  This test will only run on hardware
+              with NUMA enabled and more than 1 NUMA node.
+
+       --numa-ops N
+              stop NUMA stress workers after N bogo NUMA operations.
+
+       --oom-pipe N
+              start N workers that create as many pipes as allowed and exercise expanding and shrinking the pipes  from  the  largest  pipe
+              size  down  to a page size. Data is written into the pipes and read out again to fill the pipe buffers. With the --aggressive
+              mode enabled the data is not read out when the pipes are shrunk, causing the kernel to OOM processes  aggressively.   Running
+              many instances of this stressor will force kernel to OOM processes due to the many large pipe buffer allocations.
+
+       --oom-pipe-ops N
+              stop after N bogo pipe expand/shrink operations.
+
+       --opcode N
+              start  N  workers  that fork off children that execute randomly generated executable code.  This will generate issues such as
+              illegal instructions, bus errors, segmentation faults, traps, floating point errors that are handled gracefully by the stres&#x2010;
+              sor.
+
+       --opcode-ops N
+              stop after N attempts to executate illegal code.
+
+       -o N, --open N
+              start  N  workers  that  perform  open(2)  and then close(2) operations on /dev/zero. The maximum opens at one time is system
+              defined, so the test will run up to this maximum, or 65536 open file descriptors, which ever comes first.
+
+       --open-ops N
+              stop the open stress workers after N bogo open operations.
+
+       --personality N
+              start N workers that attempt to set personality and get all the available personality types (process execution domain  types)
+              via the personality(2) system call. (Linux only).
+
+       --personality-ops N
+              stop personality stress workers after N bogo personality operations.
+
+       -p N, --pipe N
+              start N workers that perform large pipe writes and reads to exercise pipe I/O.  This exercises memory write and reads as well
+              as context switching.  Each worker has two processes, a reader and a writer.
+
+       --pipe-ops N
+              stop pipe stress workers after N bogo pipe write operations.
+
+       --pipe-data-size N
+              specifies the size in bytes of each write to the pipe (range from 4 bytes to 4096 bytes). Setting  a  small  data  size  will
+              cause  more writes to be buffered in the pipe, hence reducing the context switch rate between the pipe writer and pipe reader
+              processes. Default size is the page size.
+
+       --pipe-size N
+              specifies the size of the pipe in bytes (for systems that support the F_SETPIPE_SZ fcntl() command).  Setting  a  small  pipe
+              size  will cause the pipe to fill and block more frequently, hence increasing the context switch rate between the pipe writer
+              and the pipe reader processes. Default size is 512 bytes.
+
+       -P N, --poll N
+              start N workers that perform zero timeout polling via the poll(2), select(2) and sleep(3) calls. This wastes system and  user
+              time doing nothing.
+
+       --poll-ops N
+              stop poll stress workers after N bogo poll operations.
+
+       --procfs N
+              start N workers that read files from /proc and recursively read files from /proc/self (Linux only).
+
+       --procfs-ops N
+              stop  procfs  reading after N bogo read operations. Note, since the number of entries may vary between kernels, this bogo ops
+              metric is probably very misleading.
+
+       --pthread N
+              start N workers that iteratively creates and terminates multiple pthreads (the default is 1024 pthreads per worker). In  each
+              iteration,  each  newly  created  pthread  waits  until  the  worker has created all the pthreads and then they all terminate
+              together.
+
+       --pthread-ops N
+              stop pthread workers after N bogo pthread create operations.
+
+       --pthread-max N
+              create N pthreads per worker. If the product of the number of pthreads by the number of workers  is  greater  than  the  soft
+              limit of allowed pthreads then the maximum is re-adjusted down to the maximum allowed.
+
+       --ptrace N
+              start N workers that fork and trace system calls of a child process using ptrace(2).
+
+       --ptrace-ops N
+              stop ptracer workers after N bogo system calls are traced.
+
+       --pty N
+              start  N  workers that repeatedly attempt to open pseudoterminals and perform various pty ioctls upon the ptys before closing
+              them.
+
+       --pty-ops N
+              stop pty workers after N pty bogo operations.
+
+       --pty-max N
+              try to open a maximum of N pseudoterminals, the default is 65536. The allowed range of this setting is 8..65536.
+
+       -Q, --qsort N
+              start N workers that sort 32 bit integers using qsort.
+
+       --qsort-ops N
+              stop qsort stress workers after N bogo qsorts.
+
+       --qsort-size N
+              specify number of 32 bit integers to sort, default is 262144 (256 &#xD7; 1024).
+
+       --quota N
+              start N workers that exercise the Q_GETQUOTA, Q_GETFMT, Q_GETINFO, Q_GETSTATS and Q_SYNC  quotactl(2)  commands  on  all  the
+              available mounted block based file systems.
+
+       --quota-ops N
+              stop quota stress workers after N bogo quotactl operations.
+
+       --rdrand N
+              start N workers that read the Intel hardware random number generator (Intel Ivybridge processors upwards).
+
+       --rdrand-ops N
+              stop rdrand stress workers after N bogo rdrand operations (1 bogo op = 2048 random bits successfully read).
+
+       --readahead N
+              start  N  workers  that  randomly seeks and performs 512 byte read/write I/O operations on a file with readahead. The default
+              file size is 1 GB.  Readaheads and reads are batched into 16 readaheads and then 16 reads.
+
+       --readahead-bytes N
+              set the size of readahead file, the default is 1 GB. One can specify the size as % of free space on the  file  system  or  in
+              units of Bytes, KBytes, MBytes and GBytes using the suffix b, k, m or g.
+
+       --readahead-ops N
+              stop readahead stress workers after N bogo read operations.
+
+       --remap N
+              start  N  workers  that  map 512 pages and re-order these pages using the deprecated system call remap_file_pages(2). Several
+              page re-orderings are exercised: forward, reverse, random and many pages to 1 page.
+
+       --remap-ops N
+              stop after N remapping bogo operations.
+
+       -R N, --rename N
+              start N workers that each create a file and then repeatedly rename it.
+
+       --rename-ops N
+              stop rename stress workers after N bogo rename operations.
+
+       --resources N
+              start N workers that consume various system resources. Each worker will spawn 1024 child processes that  iterate  1024  times
+              consuming shared memory, heap, stack, temporary files and various file descriptors (eventfds, memoryfds,
+               userfaultfds, pipes and sockets).
+
+       --resources-ops N
+              stop after N resource child forks.
+
+       --rlimit N
+              start N workers that exceed CPU and file size resource imits, generating SIGXCPU and SIGXFSZ signals.
+
+       --rlimit-ops N
+              stop after N bogo resource limited SIGXCPU and SIGXFSZ signals have been caught.
+
+       --rmap N
+              start  N  workers  that  exercise the VM reverse-mapping. This creates 16 processes per worker that write/read multiple file-
+              backed memory mappings. There are 64 lots of 4 page mappings made onto the file, with each mapping overlapping  the  previous
+              by 3 pages and at least 1 page of non-mapped memory between each of the mappings. Data is synchronously msync&apos;</span>d to the file 1
+              <span class="hljs-keyword">in</span> every 256 iterations <span class="hljs-keyword">in</span> a random manner.
+
+       --rmap-ops N
+              stop after N bogo rmap memory writes/reads.
+
+       --rtc N
+              start N workers that exercise the real time clock (RTC) interfaces  via  /dev/rtc  and  /sys/class/rtc/rtc0.  No  destructive
+              writes (modifications) are performed on the RTC. This is a Linux only stressor.
+
+       --rtc-ops N
+              stop after N bogo RTC interface accesses.
+
+       --schedpolicy N
+              start  N  workers  that  work  <span class="hljs-built_in">set</span>  the  worker  to  various  available  scheduling policies out of SCHED_OTHER, SCHED_BATCH,
+              SCHED_IDLE, SCHED_FIFO and SCHED_RR.  For the real time scheduling policies a random <span class="hljs-built_in">sched</span> priority is selected  between  the
+              minimum and maximum scheduling prority settings.
+
+       --schedpolicy-ops N
+              stop after N bogo scheduling policy changes.
+
+       --sctp N
+              start  N  workers  that  perform  network  sctp  stress activity using the Stream Control Transmission Protocol (SCTP).  This
+              involves client/server processes performing rapid connect, send/receives and disconnects on the <span class="hljs-built_in">local</span> host.
+
+       --sctp-domain D
+              specify the domain to use, the default is ipv4. Currently ipv4 and ipv6 are supported.
+
+       --sctp-ops N
+              stop sctp workers after N bogo operations.
+
+       --sctp-port P
+              start at sctp port P. For N sctp worker processes, ports P to (P * 4) - 1 are used <span class="hljs-keyword">for</span> ipv4, ipv6 domains and ports P to P  -
+              1 are used <span class="hljs-keyword">for</span> the unix domain.
+
+       --seal N
+              start N workers that exercise the fcntl(2) SEAL commands on a small anonymous file created using memfd_create(2).  After each
+              SEAL <span class="hljs-built_in">command</span> is issued the stessor also sanity checks <span class="hljs-keyword">if</span> the seal operation has sealed the file correctly.  (Linux only).
+
+       --seal-ops N
+              stop after N bogo seal operations.
+
+       --seccomp N
+              start N workers that exercise Secure Computing system call filtering. Each worker creates child processes that write a  short
+              message to /dev/null and <span class="hljs-keyword">then</span> exits. 2% of the child processes have a seccomp filter that disallows the write system call and
+              hence it is killed by seccomp with a SIGSYS.  Note that this stressor can generate many audit  <span class="hljs-built_in">log</span>  messages  each  time  the
+              child is killed.
+
+       --seccomp-ops N
+              stop seccomp stress workers after N seccomp filter tests.
+
+       --seek N
+              start  N  workers  that randomly seeks and performs 512 byte <span class="hljs-built_in">read</span>/write I/O operations on a file. The default file size is 16
+              GB.
+
+       --seek-ops N
+              stop seek stress workers after N bogo seek operations.
+
+       --seek-punch
+              punch randomly located 8K holes into the file to cause more extents to force a more demanding seek stressor, (Linux only).
+
+       --seek-size N
+              specify the size of the file <span class="hljs-keyword">in</span> bytes. Small file sizes allow the I/O to occur <span class="hljs-keyword">in</span> the cache, causing greater CPU load.  Large
+              file  sizes  force more I/O operations to drive causing more <span class="hljs-built_in">wait</span> time and more I/O on the drive. One can specify the size <span class="hljs-keyword">in</span>
+              units of Bytes, KBytes, MBytes and GBytes using the suffix b, k, m or g.
+
+       --sem N
+              start N workers that perform POSIX semaphore <span class="hljs-built_in">wait</span> and post operations. By default, a parent and 4 children  are  started  per
+              worker  to  provide  some  contention  on  the  semaphore. This stresses fast semaphore operations and produces rapid context
+              switching.
+
+       --sem-ops N
+              stop semaphore stress workers after N bogo semaphore operations.
+
+       --sem-procs N
+              start N child workers per worker to provide contention on the semaphore, the default is 4 and a maximum of 64 are allowed.
+
+       --sem-sysv N
+              start N workers that perform System V semaphore <span class="hljs-built_in">wait</span> and post operations. By default, a parent and 4 children are started per
+              worker  to  provide  some  contention  on  the  semaphore. This stresses fast semaphore operations and produces rapid context
+              switching.
+
+       --sem-sysv-ops N
+              stop semaphore stress workers after N bogo System V semaphore operations.
+
+       --sem-sysv-procs N
+              start N child processes per worker to provide contention on the System V semaphore, the default is 4 and a maximum of 64  are
+              allowed.
+
+       --sendfile N
+              start  N  workers that send an empty file to /dev/null. This operation spends nearly all the time <span class="hljs-keyword">in</span> the kernel.  The default
+              sendfile size is 4MB.  The sendfile options are <span class="hljs-keyword">for</span> Linux only.
+
+       --sendfile-ops N
+              stop sendfile workers after N sendfile bogo operations.
+
+       --sendfile-size S
+              specify the size to be copied with each sendfile call. The default size is 4MB. One can specify the size <span class="hljs-keyword">in</span> units  of  Bytes,
+              KBytes, MBytes and GBytes using the suffix b, k, m or g.
+
+       --shm N
+              start  N workers that open and allocate shared memory objects using the POSIX shared memory interfaces.  By default, the <span class="hljs-built_in">test</span>
+              will repeatedly create and destroy 32 shared memory objects, each of <span class="hljs-built_in">which</span> is 8MB <span class="hljs-keyword">in</span> size.
+
+       --shm-ops N
+              stop after N POSIX shared memory create and destroy bogo operations are complete.
+
+       --shm-bytes N
+              specify the size of the POSIX shared memory objects to be created. One can specify the size as % of total available memory or
+              <span class="hljs-keyword">in</span> units of Bytes, KBytes, MBytes and GBytes using the suffix b, k, m or g.
+
+       --shm-objs N
+              specify the number of shared memory objects to be created.
+
+       --shm-sysv N
+              start N workers that allocate shared memory using the System V shared memory interface.  By default, the <span class="hljs-built_in">test</span> will repeatedly
+              create and destroy 8 shared memory segments, each of <span class="hljs-built_in">which</span> is 8MB <span class="hljs-keyword">in</span> size.
+
+       --shm-sysv-ops N
+              stop after N shared memory create and destroy bogo operations are complete.
+
+       --shm-sysv-bytes N
+              specify the size of the shared memory segment to be created. One can specify the size as % of total available  memory  or  <span class="hljs-keyword">in</span>
+              units of Bytes, KBytes, MBytes and GBytes using the suffix b, k, m or g.
+
+       --shm-sysv-segs N
+              specify the number of shared memory segments to be created.
+
+       --sigfd N
+              start  N workers that generate SIGRT signals and are handled by reads by a child process using a file descriptor <span class="hljs-built_in">set</span> up using
+              signalfd(2).  (Linux only). This will generate a heavy context switch load when all CPUs are fully loaded.
+
+       --sigfd-ops
+              stop sigfd workers after N bogo SIGUSR1 signals are sent.
+
+       --sigfpe N
+              start N workers that rapidly cause division by zero SIGFPE faults.
+
+       --sigfpe-ops N
+              stop sigfpe stress workers after N bogo SIGFPE faults.
+
+       --sigpending N
+              start N workers that check <span class="hljs-keyword">if</span> SIGUSR1 signals are pending. This stressor masks SIGUSR1, generates a SIGUSR1 signal  and  uses
+              sigpending(2) to see <span class="hljs-keyword">if</span> the signal is pending. Then it unmasks the signal and checks <span class="hljs-keyword">if</span> the signal is no longer pending.
+
+       --signpending-ops N
+              stop sigpending stress workers after N bogo sigpending pending/unpending checks.
+
+       --sigsegv N
+              start N workers that rapidly create and catch segmentation faults.
+
+       --sigsegv-ops N
+              stop sigsegv stress workers after N bogo segmentation faults.
+
+       --sigsuspend N
+              start N workers that each spawn off 4 child processes that <span class="hljs-built_in">wait</span> <span class="hljs-keyword">for</span> a SIGUSR1 signal from the parent using sigsuspend(2). The
+              parent sends SIGUSR1 signals to each child <span class="hljs-keyword">in</span> rapid succession.  Each sigsuspend wakeup is counted as one bogo operation.
+
+       --sigsuspend-ops N
+              stop sigsuspend stress workers after N bogo sigsuspend wakeups.
+
+       --sigq N
+              start N workers that rapidly send SIGUSR1 signals using sigqueue(3) to child processes that <span class="hljs-built_in">wait</span> <span class="hljs-keyword">for</span> the signal via  sigwait&#x2010;
+              info(2).
+
+       --sigq-ops N
+              stop sigq stress workers after N bogo signal send operations.
+
+       --sleep N
+              start N workers that spawn off multiple threads that each perform multiple sleeps of ranges 1us to 0.1s.  This creates multi&#x2010;
+              ple context switches and timer interrupts.
+
+       --sleep-ops N
+              stop after N sleep bogo operations.
+
+       --sleep-max P
+              start P threads per worker. The default is 1024, the maximum allowed is 30000.
+
+       -S N, --sock N
+              start N workers that perform various socket stress activity. This involves a pair of client/server processes performing rapid
+              connect, send and receives and disconnects on the <span class="hljs-built_in">local</span> host.
+
+       --sock-domain D
+              specify the domain to use, the default is ipv4. Currently ipv4, ipv6 and unix are supported.
+
+       --sock-nodelay
+              This  disables  the  TCP  Nagle  algorithm, so data segments are always sent as soon as possible.  This stops data from being
+              buffered before being transmitted, hence resulting <span class="hljs-keyword">in</span> poorer network utilisation and more context switches between the sender
+              and receiver.
+
+       --sock-port P
+              start at socket port P. For N socket worker processes, ports P to P - 1 are used.
+
+       --sock-ops N
+              stop socket stress workers after N bogo operations.
+
+       --sock-opts [ send | sendmsg | sendmmsg ]
+              by  default,  messages are sent using send(2). This option allows one to specify the sending method using send(2), sendmsg(2)
+              or sendmmsg(2).  Note that sendmmsg is only available <span class="hljs-keyword">for</span> Linux systems that support this system call.
+
+       --sock-type [ stream | seqpacket ]
+              specify the socket <span class="hljs-built_in">type</span> to use. The default <span class="hljs-built_in">type</span> is stream. seqpacket currently only works <span class="hljs-keyword">for</span> the unix socket domain.
+
+       --sockfd N
+              start N workers that pass file descriptors over a UNIX domain socket using the CMSG(3) ancillary  data  mechanism.  For  each
+              worker,  pair  of client/server processes are created, the server opens as many file descriptors on /dev/null as possible and
+              passing these over the socket to a client that reads these from the CMSG data and immediately closes the files.
+
+       --sockfd-ops N
+              stop sockfd stress workers after N bogo operations.
+
+       --sockfd-port P
+              start at socket port P. For N socket worker processes, ports P to P - 1 are used.
+
+       --sockpair N
+              start N workers that perform socket pair I/O <span class="hljs-built_in">read</span>/writes. This involves a pair of client/server processes performing randomly
+              sized socket I/O operations.
+
+       --sockpair-ops N
+              stop socket pair stress workers after N bogo operations.
+
+       --spawn N
+              start  N  workers  continually spawn children using posix_spawn(3) that <span class="hljs-built_in">exec</span> stress-ng and <span class="hljs-keyword">then</span> <span class="hljs-built_in">exit</span> almost immediately. Cur&#x2010;
+              rently Linux only.
+
+       --spawn-ops N
+              stop spawn stress workers after N bogo spawns.
+
+       --splice N
+              move data from /dev/zero to /dev/null through a pipe without any copying between kernel address space and user address  space
+              using splice(2). This is only available <span class="hljs-keyword">for</span> Linux.
+
+       --splice-ops N
+              stop after N bogo splice operations.
+
+       --splice-bytes N
+              transfer  N bytes per splice call, the default is 64K. One can specify the size as % of total available memory or <span class="hljs-keyword">in</span> units of
+              Bytes, KBytes, MBytes and GBytes using the suffix b, k, m or g.
+
+       --stack N
+              start N workers that rapidly cause and catch stack overflows by use of alloca(3).
+
+       --stack-fill
+              the default action is to touch the lowest page on each stack allocation. This option touches all the pages by filling the new
+              stack allocation with zeros <span class="hljs-built_in">which</span> forces physical pages to be allocated and hence is more aggressive.
+
+       --stack-ops N
+              stop stack stress workers after N bogo stack overflows.
+
+       --stackmmap N
+              start  N  workers that use a 2MB stack that is memory mapped onto a temporary file. A recursive <span class="hljs-keyword">function</span> works down the stack
+              and flushes dirty stack pages back to the memory mapped file using msync(2) until the end of  the  stack  is  reached  (stack
+              overflow). This exercises dirty page and stack exception handling.
+
+       --stackmmap-ops N
+              stop workers after N stack overflows have occurred.
+
+       --str N
+              start N workers that exercise various libc string <span class="hljs-built_in">functions</span> on random strings.
+
+       --str-method strfunc
+              select  a  specific libc string <span class="hljs-keyword">function</span> to stress. Available string <span class="hljs-built_in">functions</span> to stress are: all, index, rindex, strcasecmp,
+              strcat, strchr, strcoll, strcmp, strcpy, strlen, strncasecmp, strncat, strncmp, strrchr and strxfrm.  See string(3) <span class="hljs-keyword">for</span>  more
+              information on these string functions.  The <span class="hljs-string">&apos;all&apos;</span> method is the default and will exercise all the string methods.
+
+       --str-ops N
+              stop after N bogo string operations.
+
+       --stream N
+              start N workers exercising a memory bandwidth stressor loosely based on the STREAM <span class="hljs-string">&quot;Sustainable Memory Bandwidth in High Per&#x2010;
+              formance Computers&quot;</span> benchmarking tool by John D. McCalpin, Ph.D.  This stressor allocates buffers that are at least  4  <span class="hljs-built_in">times</span>
+              the  size  of  the CPU L2 cache and continually performs rounds of following computations on large arrays of double precision
+              floating point numbers:
+
+              Operation            Description
+              copy                 c[i] = a[i]
+              scale                b[i] = scalar * c[i]
+              add                  c[i] = a[i] + b[i]
+              triad                a[i] = b[i] + (c[i] * scalar)
+
+              Since this is loosely based on a variant of the STREAM benchmark code, DO NOT submit results based on this as it is  intended
+              to  <span class="hljs-keyword">in</span> stress-ng just to stress memory and compute and NOT intended <span class="hljs-keyword">for</span> STREAM accurate tuned or non-tuned benchmarking what&#x2010;
+              soever.  Use the official STREAM benchmarking tool <span class="hljs-keyword">if</span> you desire accurate and standardised STREAM benchmarks.
+
+       --stream-ops N
+              stop after N stream bogo operations, <span class="hljs-built_in">where</span> a bogo operation is one round of copy, scale, add and triad operations.
+
+       --stream<span class="hljs-_">-l</span>3-size N
+              Specify the CPU Level 3 cache size <span class="hljs-keyword">in</span> bytes.  One can specify the size <span class="hljs-keyword">in</span> units of Bytes, KBytes, MBytes and GBytes using the
+              suffix  b,  k,  m  or  g.  If the L3 cache size is not provided, <span class="hljs-keyword">then</span> stress-ng will attempt to determine the cache size, and
+              failing this, will default the size to 4MB.
+
+       <span class="hljs-_">-s</span> N, --switch N
+              start N workers that send messages via pipe to a child to force context switching.
+
+       --switch-ops N
+              stop context switching workers after N bogo operations.
+
+       --symlink N
+              start N workers creating and removing symbolic links.
+
+       --symlink-ops N
+              stop symlink stress workers after N bogo operations.
+
+       --sync-file N
+              start N workers that perform a range of data syncs across a file using sync_file_range(2).  Three mixes  of  syncs  are  per&#x2010;
+              formed,  from start to the end of the file,  from end of the file to the start, and a random mix. A random selection of valid
+              sync types are used, covering the  SYNC_FILE_RANGE_WAIT_BEFORE,  SYNC_FILE_RANGE_WRITE  and  SYNC_FILE_RANGE_WAIT_AFTER  flag
+              bits.
+
+       --sync-file-ops N
+              stop sync-file workers after N bogo sync operations.
+
+       --sync-file-bytes N
+              specify  the size of the file to be sync<span class="hljs-string">&apos;d. One can specify the size as % of free space on the file system in units of Bytes,
+              KBytes, MBytes and GBytes using the suffix b, k, m or g.
+
+       --sysinfo N
+              start N workers that continually read system and process specific information.  This reads the process user and system  times
+              using  the times(2) system call.  For Linux systems, it also reads overall system statistics using the sysinfo(2) system call
+              and also the file system statistics for all mounted file systems using statfs(2).
+
+       --sysinfo-ops N
+              stop the sysinfo workers after N bogo operations.
+
+       --sysfs N
+              start N workers that recursively read files from /sys (Linux only).  This may cause specific kernel drivers to emit  messages
+              into the kernel log.
+
+       --sys-ops N
+              stop  sysfs  reading  after N bogo read operations. Note, since the number of entries may vary between kernels, this bogo ops
+              metric is probably very misleading.
+
+       --tee N
+              move data from a writer process to a reader process through pipes and to /dev/null without any copying between kernel address
+              space and user address space using tee(2). This is only available for Linux.
+
+       --tee-ops N
+              stop after N bogo tee operations.
+
+       -T N, --timer N
+              start  N  workers  creating  timer  events at a default rate of 1 MHz (Linux only); this can create a many thousands of timer
+              clock interrupts. Each timer event is caught by a signal handler and counted as a bogo timer op.
+
+       --timer-ops N
+              stop timer stress workers after N bogo timer events (Linux only).
+
+       --timer-freq F
+              run timers at F Hz; range from 1 to 1000000000 Hz (Linux only). By selecting an appropriate frequency stress-ng can  generate
+              hundreds of thousands of interrupts per second.
+
+       --timer-rand
+              select  a  timer  frequency based around the timer frequency +/- 12.5% random jitter. This tries to force more variability in
+              the timer interval to make the scheduling less predictable.
+
+       --timerfd N
+              start N workers creating timerfd events at a default rate of 1 MHz (Linux only); this can create a many  thousands  of  timer
+              clock  events.  Timer  events are waited for on the timer file descriptor using select(2) and then read and counted as a bogo
+              timerfd op.
+
+       --timerfd-ops N
+              stop timerfd stress workers after N bogo timerfd events (Linux only).
+
+       --timerfd-freq F
+              run timers at F Hz; range from 1 to 1000000000 Hz (Linux only). By selecting an appropriate frequency stress-ng can  generate
+              hundreds of thousands of interrupts per second.
+
+       --timerfd-rand
+              select  a timerfd frequency based around the timer frequency +/- 12.5% random jitter. This tries to force more variability in
+              the timer interval to make the scheduling less predictable.
+
+       --tlb-shootdown N
+              start N workers that force Translation Lookaside Buffer (TLB) shootdowns.  This is achieved by creating up to 16  child  pro&#x2010;
+              cesses that all share a region of memory and these processes are shared amongst the available CPUs.  The processes adjust the
+              page mapping settings causing TLBs to be force flushed on the other processors, causing the TLB shootdowns.
+
+       --tlb-shootdown-ops N
+              stop after N bogo TLB shootdown operations are completed.
+
+       --tmpfs N
+              start N workers that create a temporary file on an available tmpfs file system and perform various file based mmap operations
+              upon it.
+
+       --tmpfs-ops N
+              stop tmpfs stressors after N bogo mmap operations.
+
+       --tsc N
+              start N workers that read the Time Stamp Counter (TSC) 256 times per loop iteration (bogo operation). Available only on Intel
+              x86 platforms.
+
+       --tsc-ops N
+              stop the tsc workers after N bogo operations are completed.
+
+       --tsearch N
+              start N workers that insert, search and delete 32 bit integers on a binary tree using tsearch(3), tfind(3) and tdelete(3). By
+              default,  there  are 65536 randomized integers used in the tree.  This is a useful method to exercise random access of memory
+              and processor cache.
+
+       --tsearch-ops N
+              stop the tsearch workers after N bogo tree operations are completed.
+
+       --tsearch-size N
+              specify the size (number of 32 bit integers) in the array to tsearch. Size can be from 1K to 4M.
+
+       --udp N
+              start N workers that transmit data using UDP. This involves a pair of client/server processes performing rapid connect,  send
+              and receives and disconnects on the local host.
+
+       --udp-domain D
+              specify the domain to use, the default is ipv4. Currently ipv4, ipv6 and unix are supported.
+
+       --udp-lite
+              use the UDP-Lite (RFC 3828) protocol (only for ipv4 and ipv4 domains).
+
+       --udp-ops N
+              stop udp stress workers after N bogo operations.
+
+       --udp-port P
+              start at port P. For N udp worker processes, ports P to P - 1 are used. By default, ports 7000 upwards are used.
+
+       --udp-flood N
+              start  N workers that attempt to flood the host with UDP packets to random ports. The IP address of the packets are currently
+              not spoofed. This is only available on systems that support AF_PACKET.
+
+       --udp-flood-domain D
+              specify the domain to use, the default is ipv4. Currently ipv4 and ipv6 are supported.
+
+       --udp-flood-ops N
+              stop udp-flood stress workers after N bogo operations.
+
+       --unshare N
+              start N workers that each fork off 32 child processes, each of which exercises the unshare(2) system call  by  disassociating
+              parts of the process execution context. (Linux only).
+
+       --unshare-ops N
+              stop after N bogo unshare operations.
+
+       -u N, --urandom N
+              start N workers reading /dev/urandom (Linux only). This will load the kernel random number source.
+
+       --urandom-ops N
+              stop urandom stress workers after N urandom bogo read operations (Linux only).
+
+       --userfaultfd N
+              start N workers that generate write page faults on a small anonymously mapped memory region and handle these faults using the
+              user space fault handling via the userfaultfd mechanism.  This will generate a large quanity of major page  faults  and  also
+              context switches during the handling of the page faults.  (Linux only).
+
+       --userfaultfd-ops N
+              stop userfaultfd stress workers after N page faults.
+
+       --userfaultfd-bytes N
+              mmap  N  bytes  per userfaultfd worker to page fault on, the default is 16MB One can specify the size as % of total available
+              memory or in units of Bytes, KBytes, MBytes and GBytes using the suffix b, k, m or g.
+
+       --utime N
+              start N workers updating file timestamps. This is mainly CPU bound when the default is used as the  system  flushes  metadata
+              changes only periodically.
+
+       --utime-ops N
+              stop utime stress workers after N utime bogo operations.
+
+       --utime-fsync
+              force  metadata  changes  on  each file timestamp update to be flushed to disk.  This forces the test to become I/O bound and
+              will result in many dirty metadata writes.
+
+       --vecmath N
+              start N workers that perform various unsigned integer math operations on various 128 bit vectors. A mix of vector math opera&#x2010;
+              tions  are  performed  on  the following vectors: 16 &#xD7; 8 bits, 8 &#xD7; 16 bits, 4 &#xD7; 32 bits, 2 &#xD7; 64 bits. The metrics produced by
+              this mix depend on the processor architecture and the vector math optimisations produced by the compiler.
+
+       --vecmath-ops N
+              stop after N bogo vector integer math operations.
+
+       --vfork N
+              start N workers continually vforking children that immediately exit.
+
+       --vfork-ops N
+              stop vfork stress workers after N bogo operations.
+
+       --vfork-max P
+              create P processes and then wait for them to exit per iteration. The default is just 1; higher values will create many tempo&#x2010;
+              rary  zombie processes that are waiting to be reaped. One can potentially fill up the the process table using high values for
+              --vfork-max and --vfork.
+
+       --vforkmany N
+              start N workers that spawn off a chain of vfork children until the process table fills up  and/or  vfork  fails.   vfork  can
+              rapidly create child processes and the parent process has to wait until the child dies, so this stressor rapidly fills up the
+              process table.
+
+       --vforkmany-ops N
+              stop vforkmany stressors after N vforks have been made.
+
+       -m N, --vm N
+              start N workers continuously calling mmap(2)/munmap(2) and writing to the allocated memory. Note that this can cause  systems
+              to trip the kernel OOM killer on Linux systems if not enough physical memory and swap is not available.
+
+       --vm-bytes N
+              mmap  N  bytes  per  vm  worker, the default is 256MB. One can specify the size as % of total available memory or in units of
+              Bytes, KBytes, MBytes and GBytes using the suffix b, k, m or g.
+
+       --vm-ops N
+              stop vm workers after N bogo operations.
+
+       --vm-hang N
+              sleep N seconds before unmapping memory, the default is zero seconds.  Specifying 0 will do an infinite wait.
+
+       --vm-keep
+              do not continually unmap and map memory, just keep on re-writing to it.
+
+       --vm-locked
+              Lock the pages of the mapped region into memory using mmap MAP_LOCKED (since Linux 2.5.37).  This is similar to locking  mem&#x2010;
+              ory as described in mlock(2).
+
+       --vm-method m
+              specify  a  vm stress method. By default, all the stress methods are exercised sequentially, however one can specify just one
+              method to be used if required.  Each of the vm workers have 3 phases:
+
+              1. Initialised. The anonymously memory mapped region is set to a known pattern.
+
+              2. Exercised. Memory is modified in a known predictable way. Some vm workers alter memory sequentially,  some  use  small  or
+              large strides to step along memory.
+
+              3. Checked. The modified memory is checked to see if it matches the expected result.
+
+              The  vm methods containing &apos;</span>prime<span class="hljs-string">&apos; in their name have a stride of the largest prime less than 2^64, allowing to them to thor&#x2010;
+              oughly step through memory and touch all locations just once while also doing without touching  memory  cells  next  to  each
+              other. This strategy exercises the cache and page non-locality.
+
+              Since  the memory being exercised is virtually mapped then there is no guarantee of touching page addresses in any particular
+              physical order.  These workers should not be used to test that all the system&apos;</span>s memory is working correctly either, use tools
+              such as memtest86 instead.
+
+              The  vm  stress  methods  are  intended to exercise memory <span class="hljs-keyword">in</span> ways to possibly find memory issues and to try to force thermal
+              errors.
+
+              Available vm stress methods are described as follows:
+
+              Method                  Description
+              all                     iterate over all the vm stress methods as listed below.
+              flip                    sequentially work through memory 8 <span class="hljs-built_in">times</span>, each time just one bit <span class="hljs-keyword">in</span> memory flipped  (inverted).  This
+                                      will effectively invert each byte <span class="hljs-keyword">in</span> 8 passes.
+              galpat-0                galloping  pattern  zeros. This sets all bits to 0 and flips just 1 <span class="hljs-keyword">in</span> 4096 bits to 1. It <span class="hljs-keyword">then</span> checks
+                                      to see <span class="hljs-keyword">if</span> the 1s are pulled down to 0 by their neighbours or of the neighbours have been pulled up to
+                                      1.
+              galpat-1                galloping pattern ones. This sets all bits to 1 and flips just 1 <span class="hljs-keyword">in</span> 4096 bits to 0. It <span class="hljs-keyword">then</span> checks to
+                                      see <span class="hljs-keyword">if</span> the 0s are pulled up to 1 by their neighbours or of the neighbours have been pulled down to 0.
+              gray                    fill the memory with sequential gray codes (these only change 1 bit at a time between adjacent bytes)
+                                      and <span class="hljs-keyword">then</span> check <span class="hljs-keyword">if</span> they are <span class="hljs-built_in">set</span> correctly.
+              incdec                  work  sequentially  through memory twice, the first pass increments each byte by a specific value and
+                                      the second pass decrements each byte back to the original start value. The increment/decrement  value
+                                      changes on each invocation of the stressor.
+              inc-nybble              initialise  memory  to a <span class="hljs-built_in">set</span> value (that changes on each invocation of the stressor) and <span class="hljs-keyword">then</span> sequen&#x2010;
+                                      tially work through each byte incrementing the bottom 4 bits by 1 and the top 4 bits by 15.
+              rand-set                sequentially work through memory <span class="hljs-keyword">in</span> 64 bit chunks setting bytes <span class="hljs-keyword">in</span> the chunk to the same 8 bit random
+                                      value.  The random value changes on each chunk.  Check that the values have not changed.
+              rand-sum                sequentially  <span class="hljs-built_in">set</span>  all  memory to random values and <span class="hljs-keyword">then</span> summate the number of bits that have changed
+                                      from the original <span class="hljs-built_in">set</span> values.
+              <span class="hljs-built_in">read</span>64                  sequentially <span class="hljs-built_in">read</span> memory using 32 x 64 bit reads per bogo loop. Each loop equates to one bogo  opera&#x2010;
+                                      tion.  This exercises raw memory reads.
+              ror                     fill  memory  with  a random pattern and <span class="hljs-keyword">then</span> sequentially rotate 64 bits of memory right by one bit,
+                                      <span class="hljs-keyword">then</span> check the final load/rotate/stored values.
+
+              swap                    fill memory <span class="hljs-keyword">in</span> 64 byte chunks with random patterns. Then swap each 64 chunk with  a  randomly  chosen
+                                      chunk. Finally, reverse the swap to put the chunks back to their original place and check <span class="hljs-keyword">if</span> the data
+                                      is correct. This exercises adjacent and random memory load/stores.
+              move-inv                sequentially fill memory 64 bits of memory at a time with random values, and <span class="hljs-keyword">then</span> check <span class="hljs-keyword">if</span> the memory
+                                      is <span class="hljs-built_in">set</span> correctly.  Next, sequentially invert each 64 bit pattern and again check <span class="hljs-keyword">if</span> the memory is <span class="hljs-built_in">set</span>
+                                      as expected.
+              modulo-x                fill memory over 23 iterations. Each iteration starts one byte further along from the  start  of  the
+                                      memory  and steps along <span class="hljs-keyword">in</span> 23 byte strides. In each stride, the first byte is <span class="hljs-built_in">set</span> to a random pattern
+                                      and all other bytes are <span class="hljs-built_in">set</span> to the inverse.  Then it checks  see  <span class="hljs-keyword">if</span>  the  first  byte  contains  the
+                                      expected  random  pattern.  This  exercises cache store/reads as well as seeing <span class="hljs-keyword">if</span> neighbouring cells
+                                      influence each other.
+              prime-0                 iterate 8 <span class="hljs-built_in">times</span> by stepping through memory <span class="hljs-keyword">in</span> very large prime strides clearing just on bit at a time
+                                      <span class="hljs-keyword">in</span> every byte. Then check to see <span class="hljs-keyword">if</span> all bits are <span class="hljs-built_in">set</span> to zero.
+              prime-1                 iterate  8 <span class="hljs-built_in">times</span> by stepping through memory <span class="hljs-keyword">in</span> very large prime strides setting just on bit at a time
+                                      <span class="hljs-keyword">in</span> every byte. Then check to see <span class="hljs-keyword">if</span> all bits are <span class="hljs-built_in">set</span> to one.
+              prime-gray-0            first step through memory <span class="hljs-keyword">in</span> very large prime strides clearing just on bit (based on a gray code)  <span class="hljs-keyword">in</span>
+                                      every  byte.  Next,  repeat this but clear the other 7 bits. Then check to see <span class="hljs-keyword">if</span> all bits are <span class="hljs-built_in">set</span> to
+                                      zero.
+              prime-gray-1            first step through memory <span class="hljs-keyword">in</span> very large prime strides setting just on bit (based on a gray  code)  <span class="hljs-keyword">in</span>
+                                      every byte. Next, repeat this but <span class="hljs-built_in">set</span> the other 7 bits. Then check to see <span class="hljs-keyword">if</span> all bits are <span class="hljs-built_in">set</span> to one.
+              rowhammer               try  to force memory corruption using the rowhammer memory stressor. This fetches two 32 bit integers
+                                      from memory and forces a cache flush on the two addresses multiple times.  This  has  been  known  to
+                                      force bit flipping on some hardware, especially with lower frequency memory refresh cycles.
+              walk-0d                 <span class="hljs-keyword">for</span>  each  byte  <span class="hljs-keyword">in</span>  memory,  walk through each data line setting them to low (and the others are <span class="hljs-built_in">set</span>
+                                      high) and check that the written value is as expected. This checks <span class="hljs-keyword">if</span> any data lines are stuck.
+              walk-1d                 <span class="hljs-keyword">for</span> each byte <span class="hljs-keyword">in</span> memory, walk through each data line setting them to high (and  the  others  are  <span class="hljs-built_in">set</span>
+                                      low) and check that the written value is as expected. This checks <span class="hljs-keyword">if</span> any data lines are stuck.
+              walk-0a                 <span class="hljs-keyword">in</span>  the  given  memory  mapping,  work  through a range of specially chosen addresses working through
+                                      address lines to see <span class="hljs-keyword">if</span> any address lines are  stuck  low.  This  works  best  with  physical  memory
+                                      addressing, however, exercising these virtual addresses has some value too.
+              walk-1a                 <span class="hljs-keyword">in</span>  the  given  memory  mapping,  work  through a range of specially chosen addresses working through
+                                      address lines to see <span class="hljs-keyword">if</span> any address lines are stuck  high.  This  works  best  with  physical  memory
+                                      addressing, however, exercising these virtual addresses has some value too.
+              write64                 sequentially write memory using 32 x 64 bit writes per bogo loop. Each loop equates to one bogo oper&#x2010;
+                                      ation.  This exercises raw memory writes.  Note that memory writes are not checked at the end of each
+                                      <span class="hljs-built_in">test</span> iteration.
+              zero-one                <span class="hljs-built_in">set</span> all memory bits to zero and <span class="hljs-keyword">then</span> check <span class="hljs-keyword">if</span> any bits are not zero. Next, <span class="hljs-built_in">set</span> all the memory bits to
+                                      one and check <span class="hljs-keyword">if</span> any bits are not one.
+
+       --vm-populate
+              populate (prefault) page tables <span class="hljs-keyword">for</span> the memory mappings; this can stress swapping. Only available  on  systems  that  support
+              MAP_POPULATE (since Linux 2.5.46).
+
+       --vm-rw N
+              start  N workers that transfer memory to/from a parent/child using process_vm_writev(2) and process_vm_readv(2). This is fea&#x2010;
+              ture is only supported on Linux.  Memory transfers are only verified <span class="hljs-keyword">if</span> the --verify option is enabled.
+
+       --vm-rw-ops N
+              stop vm-rw workers after N memory <span class="hljs-built_in">read</span>/writes.
+
+       --vm-rw-bytes N
+              mmap N bytes per vm-rw worker, the default is 16MB. One can specify the size as % of total available memory or  <span class="hljs-keyword">in</span>  units  of
+              Bytes, KBytes, MBytes and GBytes using the suffix b, k, m or g.
+
+       --vm-splice N
+              move  data  from  memory  to /dev/null through a pipe without any copying between kernel address space and user address space
+              using vmsplice(2) and splice(2).  This is only available <span class="hljs-keyword">for</span> Linux.
+
+       --vm-splice-ops N
+              stop after N bogo vm-splice operations.
+
+       --vm-splice-bytes N
+              transfer N bytes per vmsplice call, the default is 64K. One can specify the size as % of total available memory or  <span class="hljs-keyword">in</span>  units
+              of Bytes, KBytes, MBytes and GBytes using the suffix b, k, m or g.
+
+       --wait N
+              start  N  workers  that  spawn  off two children; one spins <span class="hljs-keyword">in</span> a pause(2) loop, the other continually stops and continues the
+              first. The controlling process waits on the first child to be resumed  by  the  delivery  of  SIGCONT  using  waitpid(2)  and
+              waitid(2).
+
+       --wait-ops N
+              stop after N bogo <span class="hljs-built_in">wait</span> operations.
+
+       --wcs N
+              start N workers that exercise various libc wide character string <span class="hljs-built_in">functions</span> on random strings.
+
+       --wcs-method wcsfunc
+              select  a  specific libc wide character string <span class="hljs-keyword">function</span> to stress. Available string <span class="hljs-built_in">functions</span> to stress are: all, wcscasecmp,
+              wcscat, wcschr, wcscoll, wcscmp, wcscpy, wcslen, wcsncasecmp, wcsncat, wcsncmp, wcsrchr and wcsxfrm.  The <span class="hljs-string">&apos;all&apos;</span> method is the
+              default and will exercise all the string methods.
+
+       --wcs-ops N
+              stop after N bogo wide character string operations.
+
+       --xattr N
+              start N workers that create, update and delete batches of extended attributes on a file.
+
+       --xattr-ops N
+              stop after N bogo extended attribute operations.
+
+       -y N, --yield N
+              start  N  workers  that  call  <span class="hljs-built_in">sched</span>_yield(2).  This  stressor  ensures  that  at  least  2  child processes per CPU exercice
+              shield_yield(2) no matter how many workers are specified, thus always ensuring rapid context switching.
+
+       --yield-ops N
+              stop yield stress workers after N <span class="hljs-built_in">sched</span>_yield(2) bogo operations.
+
+       --zero N
+              start N workers reading /dev/zero.
+
+       --zero-ops N
+              stop zero stress workers after N /dev/zero bogo <span class="hljs-built_in">read</span> operations.
+
+       --zlib N
+              start N workers compressing and decompressing random data using zlib. Each worker has two processes, one that compresses ran&#x2010;
+              dom data and pipes it to another process that decompresses the data. This stressor exercises CPU, cache and memory.
+
+       --zlib-ops N
+              stop after N bogo compression operations, each bogo compression operation is a compression of 64K of random data at the high&#x2010;
+              est compression level.
+
+       --zlib-method method
+              specify the <span class="hljs-built_in">type</span> of random data to send to the zlib library.  By default, the data stream is created from a random  selection
+              of  the different data generation processes.  However one can specify just one method to be used <span class="hljs-keyword">if</span> required.  Available zlib
+              data generation methods are described as follows:
+
+              Method           Description
+              random           segments of the data stream are created by randomly calling the different data generation methods.
+              binary           32 bit random numbers
+              text             random ASCII text
+              ascii01          randomly distributed ASCII 0 and 1 characters
+              asciidigits      randomly distributed ASCII digits <span class="hljs-keyword">in</span> the range of 0 and 9
+              00ff             randomly distributed 0x00 and 0xFF values
+              nybble           randomly distributed bytes <span class="hljs-keyword">in</span> the range of 0x00 to 0x0f
+              rarely1          data that has a single 1 <span class="hljs-keyword">in</span> every 32 bits, randomly located
+              rarely0          data that has a single 0 <span class="hljs-keyword">in</span> every 32 bits, randomly located
+              fixed            data stream is repeated 0x04030201
+
+       --zombie N
+              start N workers that create zombie processes. This will rapidly try to create a default of 8192 child processes that  immedi&#x2010;
+              ately  die  and <span class="hljs-built_in">wait</span> <span class="hljs-keyword">in</span> a zombie state until they are reaped.  Once the maximum number of processes is reached (or fork fails
+              because one has reached the maximum allowed number of children) the oldest child is reaped and a new process is <span class="hljs-keyword">then</span>  created
+              <span class="hljs-keyword">in</span> a first-in first-out manner, and <span class="hljs-keyword">then</span> repeated.
+
+       --zombie-ops N
+              stop zombie stress workers after N bogo zombie operations.
+
+       --zombie-max N
+              try to create as many as N zombie processes. This may not be reached <span class="hljs-keyword">if</span> the system <span class="hljs-built_in">limit</span> is less than N.
+
+EXAMPLES
+       stress-ng --vm 8 --vm-bytes 80% -t 1h
+
+              run  8  virtual memory stressors that combined use 80% of the available memory <span class="hljs-keyword">for</span> 1 hour. Thus each stressor uses 10% of the
+              available memory.
+
+       stress-ng --cpu 4 --io 2 --vm 1 --vm-bytes 1G --timeout 60s
+
+              runs <span class="hljs-keyword">for</span> 60 seconds with 4 cpu stressors, 2 io stressors and 1 vm stressor using 1GB of virtual memory.
+
+       stress-ng --iomix 2 --iomix-bytes 10% -t 10m
+
+              runs 2 instances of the mixed I/O stressors using a total of 10% of the available file system  space  <span class="hljs-keyword">for</span>  10  minutes.  Each
+              stressor will use 5% of the available file system space.
+
+       stress-ng --cpu 8 --cpu-ops 800000
+
+              runs 8 cpu stressors and stops after 800000 bogo operations.
+
+       stress-ng --sequential 2 --timeout 2m --metrics
+
+              run  2 simultaneous instances of all the stressors sequentially one by one, each <span class="hljs-keyword">for</span> 2 minutes and summarise with performance
+              metrics at the end.
+
+       stress-ng --cpu 4 --cpu-method fft --cpu-ops 10000 --metrics-brief
+
+              run 4 FFT cpu stressors, stop after 10000 bogo operations and produce a summary just <span class="hljs-keyword">for</span> the FFT results.
+
+       stress-ng --cpu 0 --cpu-method all -t 1h
+
+              run cpu stressors on all online CPUs working through all the available CPU stressors <span class="hljs-keyword">for</span> 1 hour.
+
+       stress-ng --all 4 --timeout 5m
+
+              run 4 instances of all the stressors <span class="hljs-keyword">for</span> 5 minutes.
+
+       stress-ng --random 64
+
+              run 64 stressors that are randomly chosen from all the available stressors.
+
+       stress-ng --cpu 64 --cpu-method all --verify -t 10m --metrics-brief
+
+              run 64 instances of all the different cpu stressors and verify that the computations are correct <span class="hljs-keyword">for</span> 10 minutes with  a  bogo
+              operations summary at the end.
+
+       stress-ng --sequential 0 -t 10m
+
+              run  all the stressors one by one <span class="hljs-keyword">for</span> 10 minutes, with the number of instances of each stressor matching the number of online
+              CPUs.
+
+       stress-ng --sequential 8 --class io -t 5m --times
+
+              run all the stressors <span class="hljs-keyword">in</span> the io class one by one <span class="hljs-keyword">for</span> 5 minutes each, with 8 instances of each stressor  running  concurrently
+              and show overall time utilisation statistics at the end of the run.
+
+       stress-ng --all 0 --maximize --aggressive
+
+              run  all  the  stressors  (1 instance of each per CPU) simultaneously, maximize the settings (memory sizes, file allocations,
+              etc.) and select the most demanding/aggressive options.
+
+       stress-ng --random 32 -x numa,hdd,key
+
+              run 32 randomly selected stressors and exclude the numa, hdd and key stressors
+
+       stress-ng --sequential 4 --class vm --exclude bigheap,brk,stack
+
+              run 4 instances of the VM stressors one after each other, excluding the bigheap, brk and stack stressors
+
+       stress-ng --taskset 0,2-3 --cpu 3
+
+              run 3 instances of the CPU stressor and pin them to CPUs 0, 2 and 3.
+
+EXIT STATUS
+         Status     Description
+           0        Success.
+           1        Error; incorrect user options or a fatal resource issue <span class="hljs-keyword">in</span> the stress-ng stressor harness (<span class="hljs-keyword">for</span> example, out of memory).
+           2        One or more stressors failed.
+           3        One or more stressors failed to initialise because of lack of resources, <span class="hljs-keyword">for</span> example ENOMEM  (no  memory),  ENOSPC  (no
+                    space on file system) or a missing or unimplemented system call.
+           4        One or more stressors were not implemented on a specific architecture or operating system.
+
+BUGS
+       File bug reports at:
+         https://launchpad.net/ubuntu/+<span class="hljs-built_in">source</span>/stress-ng/+filebug
+
+SEE ALSO
+       cpuburn(1), perf(1), stress(1), taskset(1)
+
+AUTHOR
+       stress-ng  was  written by Colin King &lt;colin.king@canonical.com&gt; and is a clean room re-implementation and extension of the original
+       stress tool by Amos Waterland &lt;apw@rossby.metr.ou.edu&gt;. Thanks also <span class="hljs-keyword">for</span> contributions  from  Christian  Ehrhardt,  James  Hunt,  Jim
+       Rowan, Joseph DeVincentis, Luca Pizzamiglio, Luis Henriques, Rob Colclaser, Tim Gardner and Zhiyi Sun.
+
+NOTES
+       Sending  a  SIGALRM, SIGINT or SIGHUP to stress-ng causes it to terminate all the stressor processes and ensures temporary files and
+       shared memory segments are removed cleanly.
+
+       Sending a SIGUSR2 to stress-ng will dump out the current load average and memory statistics.
+
+       Note that the stress-ng cpu, io, vm and hdd tests are different implementations of the original stress tests and hence  may  produce
+       different stress characteristics.  stress-ng does not support any GPU stress tests.
+
+       The  bogo operations metrics may change with each release  because of bug fixes to the code, new features, compiler optimisations or
+       changes <span class="hljs-keyword">in</span> system call performance.
+
+COPYRIGHT
+       Copyright &#xA9; 2013-2017 Canonical Ltd.
+       This is free software; see the <span class="hljs-built_in">source</span> <span class="hljs-keyword">for</span> copying conditions.  There is NO warranty; not even <span class="hljs-keyword">for</span> MERCHANTABILITY or FITNESS  FOR  A
+       PARTICULAR PURPOSE.
+
+
+
+                                                               March 27, 2017                                                  STRESS-NG(1)
+</code></pre>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="sar.html" class="navigation navigation-prev " aria-label="Previous page: sar">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../case/" class="navigation navigation-next " aria-label="Next page: 案例">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"stress-ng","level":"1.3.5","depth":2,"next":{"title":"案例","level":"1.4","depth":1,"path":"case/index.md","ref":"./case/index.md","articles":[]},"previous":{"title":"sar","level":"1.3.4","depth":2,"path":"tools/sar.md","ref":"tools/sar.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"tools/stress-ng.md","mtime":"2018-11-26T10:23:48.946Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-12-09T08:39:11.589Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

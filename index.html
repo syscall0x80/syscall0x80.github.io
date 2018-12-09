@@ -14,7 +14,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-Hans">
+<html class="theme-next mist use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -84,7 +84,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Mist',
     version: '6.3.0',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: false,
@@ -407,8 +407,15 @@
       
         
           
-            <h3 id="使用nodemon"><a href="#使用nodemon" class="headerlink" title="使用nodemon"></a>使用nodemon</h3>
+          使用nodemon
           
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/08/05/gitbook/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -558,8 +565,15 @@
       
         
           
-            <h3 id="使用gitment做评论系统"><a href="#使用gitment做评论系统" class="headerlink" title="使用gitment做评论系统"></a>使用gitment做评论系统</h3>
+          使用gitment做评论系统
           
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/08/05/hexo/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -657,12 +671,24 @@
                 
               
 
-              <time title="Created: 2018-08-05 22:59:11 / Modified: 23:27:23" itemprop="dateCreated datePublished" datetime="2018-08-05T22:59:11+08:00">2018-08-05</time>
+              <time title="Created: 2018-08-05 22:59:11" itemprop="dateCreated datePublished" datetime="2018-08-05T22:59:11+08:00">2018-08-05</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-09-20 22:59:21" itemprop="dateModified" datetime="2018-09-20T22:59:21+08:00">2018-09-20</time>
               
             
           </span>
@@ -697,27 +723,20 @@
       
         
           
-            <h3 id="0-准备工作"><a href="#0-准备工作" class="headerlink" title="0.准备工作"></a>0.准备工作</h3><ul>
-<li>minikube依赖墙外资源，所以需要准备好<a href="https://github.com/shadowsocks/ShadowsocksX-NG" target="_blank" rel="noopener">shadowsocks</a>, shadowsocks默认监听localhost, 将其改成监听所有网卡(0.0.0.0)</li>
-<li>安装<a href="https://www.virtualbox.org/" target="_blank" rel="noopener">virtualbox</a></li>
-<li>安装kubectl</li>
-</ul>
-<h3 id="1-minikube尝鲜"><a href="#1-minikube尝鲜" class="headerlink" title="1.minikube尝鲜"></a>1.minikube尝鲜</h3><h4 id="启动kubernetes"><a href="#启动kubernetes" class="headerlink" title="启动kubernetes"></a>启动kubernetes</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">minikube start \</span><br><span class="line">--vm-driver=virtualbox \</span><br><span class="line">--docker-env http_proxy=http://192.168.99.1:1087 \</span><br><span class="line">--docker-env https_proxy=http://192.168.99.1:1087 \</span><br><span class="line">--docker-env no_proxy=localhost,127.0.0.1,192.168.0.0/16</span><br></pre></td></tr></table></figure>
-<h4 id="访问dashboard"><a href="#访问dashboard" class="headerlink" title="访问dashboard"></a>访问dashboard</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">minikube dashboard</span><br></pre></td></tr></table></figure>
-<p>执行完上面的命令，你就可以到浏览器遛遛你的k8s了<br><img src="http://oszi662e4.bkt.clouddn.com/2018-08-05-15288173674439.jpg" alt="15288173674439"></p>
-<h3 id="2-minikube是什么"><a href="#2-minikube是什么" class="headerlink" title="2.minikube是什么"></a>2.minikube是什么</h3><p>现在我们开始真正说说minikube了，minikube是为简化搭建k8s的繁琐过程，让你可以轻松在本地环境搭建起一个单个node的k8s集群，方便学习。</p>
-<h3 id="3-安装"><a href="#3-安装" class="headerlink" title="3.安装"></a>3.安装</h3><p>安装非常简单，在Mac平台，你可以直接下载二进制文件</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">curl -Lo minikube https://storage.googleapis.com/minikube/releases/v0.27.0/minikube-darwin-amd64 &amp;&amp; chmod +x minikube &amp;&amp; sudo mv minikube /usr/local/bin/</span><br></pre></td></tr></table></figure>
-<p>或者是brew</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">brew cask install minikube</span><br></pre></td></tr></table></figure>
-<p>安装好了之后一定记得设置命令补全, 执行如下命令可以看到每个环境的设置方式</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">minikube completion -h</span><br></pre></td></tr></table></figure>
-<h3 id="4-常用命令"><a href="#4-常用命令" class="headerlink" title="4.常用命令"></a>4.常用命令</h3><h4 id="start-启动一个k8s集群"><a href="#start-启动一个k8s集群" class="headerlink" title="start 启动一个k8s集群"></a>start 启动一个k8s集群</h4><h4 id="get-k8s-versions-获取可以使用的k8s版本"><a href="#get-k8s-versions-获取可以使用的k8s版本" class="headerlink" title="get-k8s-versions 获取可以使用的k8s版本"></a>get-k8s-versions 获取可以使用的k8s版本</h4><h4 id="addons-插件管理下面会细说"><a href="#addons-插件管理下面会细说" class="headerlink" title="addons 插件管理下面会细说"></a>addons 插件管理下面会细说</h4><h3 id="5-插件管理"><a href="#5-插件管理" class="headerlink" title="5.插件管理"></a>5.插件管理</h3><p>minikube有个子命令addons, 用来管理插件，这里的插件是指一下常用的服务,比如web界面dashboard、日志搜集efk、指标监控heapster等</p>
-<h3 id="6-配置网络代理"><a href="#6-配置网络代理" class="headerlink" title="6.配置网络代理"></a>6.配置网络代理</h3><p>使用minikube启动一个单节点的k8s集群, 实际是在virtualbox里启动了一个linux虚拟机,所以要想k8s可以使用墙外资源，就得给这个虚拟机里的docker设置网络代理, 给docker设置网络代理很简单，给它配置对应的启动参数<code>http_proxy</code>和<code>https_proyx</code>, 但是这里有个问题, docker是在一个虚拟机里，网络代理ss在我们本地电脑上, 是两台独立的机器, 所以docker里配置的代理地址不能是<code>localhost:1087</code>, 而应该是我们本地电脑上的一个IP,比如:<code>192.168.31.126:1987</code>,但是问题又来了, 这个IP是路由器自动分配的, 电脑重新联网后IP会变, 所以得想办法给电脑设置一个固定IP, 网上搜了一圈没有找到如何在Mac电脑上添加虚拟网卡，没有办法了。换个思路，从virtualbox入手, minikube在virtualbox上启动虚拟机时，会设置一个host-only的网络, 所以会添加一个虚拟网卡, 这个网卡的IP地址是<code>192.168.99.1</code>, 一定是这个地址吗，不一定，但是默认是，因为minikube操作virtualbox使用的是<a href="https://github.com/docker/machine" target="_blank" rel="noopener">docker-machine</a>的driver, 这个网卡默认使用这个地址, 可以<a href="https://github.com/docker/machine/blob/ab3b7acb9792271dcd349da731150757a9346183/drivers/virtualbox/virtualbox.go#L28" target="_blank" rel="noopener">在里</a>看到。</p>
-<h3 id="7-内部原理"><a href="#7-内部原理" class="headerlink" title="7.内部原理"></a>7.内部原理</h3><p>我们知道k8s集群至少有<code>api-server</code>,<code>kube-scheduler</code>,<code>kube-controller-manager</code>,<code>kubelet</code>,<code>kube-proxy</code>五个组件和一套<code>etcd</code>组成。<br>那我<code>minikube ssh</code>进入到虚拟机里看看, </p>
-<p><a href="https://github.com/Unknwon/wuwen.org/issues/20" target="_blank" rel="noopener">https://github.com/Unknwon/wuwen.org/issues/20</a><br><a href="https://blog.samemoment.com/articles/kubernetes" target="_blank" rel="noopener">https://blog.samemoment.com/articles/kubernetes</a><br><a href="https://github.com/docker/machine/blob/ab3b7acb9792271dcd349da731150757a9346183/drivers/virtualbox/virtualbox.go#L28" target="_blank" rel="noopener">https://github.com/docker/machine/blob/ab3b7acb9792271dcd349da731150757a9346183/drivers/virtualbox/virtualbox.go#L28</a></p>
+          0.准备工作
+minikube依赖墙外资源，所以需要准备好shadowsocks, shadowsocks默认监听localhost, 将其改成监听所有网卡(0.0.0.0)
+安装virtualbox
+安装kubectl
 
-          
+1.minikube尝鲜启动kubernetesminikube start
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/08/05/minikube/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -882,7 +901,7 @@
 
 
 
-  <div class="theme-info">Theme – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.3.0</div>
+  <div class="theme-info">Theme – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Mist</a> v6.3.0</div>
 
 
 

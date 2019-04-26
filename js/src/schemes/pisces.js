@@ -3,10 +3,9 @@
 $(document).ready(function() {
 
   var sidebarInner = $('.sidebar-inner');
-  var sidebarOffset = CONFIG.sidebar.offset ? CONFIG.sidebar.offset : 12;
 
   function getHeaderOffset() {
-    return $('.header-inner').height() + sidebarOffset;
+    return $('.header-inner').height() + CONFIG.sidebar.offset;
   }
 
   function getFooterOffset() {
@@ -30,7 +29,7 @@ $(document).ready(function() {
     if (headerOffset + sidebarHeight < contentHeight) {
       sidebarInner.affix({
         offset: {
-          top   : headerOffset - sidebarOffset,
+          top   : headerOffset - CONFIG.sidebar.offset,
           bottom: footerOffset
         }
       });
